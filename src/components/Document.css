@@ -1,0 +1,125 @@
+.doc {
+  width: 100%;
+  max-width: 760px;
+}
+
+.doc__header {
+  margin: 32px 0 40px;
+}
+
+.doc__eyebrow {
+  display: inline-block;
+  color: var(--color-stone-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+.doc__title {
+  margin: 0 0 20px;
+  color: var(--color-dark-gray);
+}
+
+.doc__lede {
+  margin: 0;
+  color: var(--color-dark-gray);
+}
+
+.doc__overview {
+  margin-bottom: 48px;
+  padding: 24px 28px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gainsboro);
+  border-radius: 16px;
+}
+
+.doc__overview h2 {
+  margin: 0 0 4px;
+}
+
+.doc-step {
+  margin: 48px 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-gainsboro);
+}
+
+.doc-step__header {
+  margin-bottom: 16px;
+}
+
+.doc-step__index {
+  display: inline-block;
+  color: var(--color-stone-gray);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.doc-step__title {
+  margin: 0;
+  color: var(--color-dark-gray);
+}
+
+.doc-step__body p {
+  margin: 0 0 16px;
+  color: var(--color-dark-gray);
+}
+
+.doc-step__body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--color-linen);
+}
+
+.doc-step__sub {
+  display: block;
+  margin: 20px 0 8px;
+  color: var(--color-stone-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.doc-image {
+  margin: 20px 0;
+}
+
+.doc-image__frame {
+  width: 100%;
+  background: var(--color-linen);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-gainsboro);
+}
+
+.doc-image__hint {
+  color: var(--color-stone-gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.doc-image__caption {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-stone-gray);
+}
+
+.doc__footer {
+  margin: 64px 0 0;
+  padding: 28px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gainsboro);
+  border-radius: 16px;
+}
+
+.doc__footer h2 {
+  margin: 0 0 8px;
+}
+
+.doc__footer p {
+  margin: 0;
+  color: var(--color-dark-gray);
+}

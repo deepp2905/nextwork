@@ -1,0 +1,85 @@
+:root {
+  /* Color – Background */
+  --color-light-sea-green: #11cca6;
+  --color-gainsboro: #e5deda;
+  --color-linen: #f0e9e6;
+  --color-white-smoke: #f8f5f1;
+  --color-white: #ffffff;
+
+  /* Color – Foreground */
+  --color-dark-gray: #1b1918;
+  --color-stone-gray: #b7ada8;
+
+  /* Typography – raw */
+  --font-suisse-neue: 'Inter', system-ui, sans-serif;
+  --font-fk-grotesk-neue: 'Inter', system-ui, sans-serif;
+  --text-12: 12px;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-18: 18px;
+  --text-20: 20px;
+  --text-24: 24px;
+  --text-36: 36px;
+}
+
+/* Typography – semantic styles */
+.type-h1 {
+  font-family: var(--font-suisse-neue);
+  font-size: var(--text-36);
+  font-weight: 800;
+  line-height: 1.11;
+}
+.type-h1-36 {
+  font-family: var(--font-suisse-neue);
+  font-size: var(--text-36);
+  font-weight: 600;
+  line-height: 1.11;
+}
+.type-h1-24 {
+  font-family: var(--font-suisse-neue);
+  font-size: var(--text-24);
+  font-weight: 300;
+  line-height: 1.33;
+}
+.type-h2 {
+  font-family: var(--font-suisse-neue);
+  font-size: var(--text-20);
+  font-weight: 400;
+  line-height: 1.4;
+}
+.type-large-body {
+  font-family: var(--font-fk-grotesk-neue);
+  font-size: var(--text-18);
+  font-weight: 400;
+  line-height: 1.78;
+}
+.type-body {
+  font-family: var(--font-fk-grotesk-neue);
+  font-size: var(--text-16);
+  font-weight: 400;
+  line-height: 1.5;
+}
+.type-subheading {
+  font-family: var(--font-fk-grotesk-neue);
+  font-size: var(--text-14);
+  font-weight: 600;
+  line-height: 1.43;
+}
+.type-small-body {
+  font-family: var(--font-fk-grotesk-neue);
+  font-size: var(--text-14);
+  font-weight: 500;
+  line-height: 1.43;
+}
+.type-small-body-14 {
+  font-family: var(--font-fk-grotesk-neue);
+  font-size: var(--text-14);
+  font-weight: 400;
+  line-height: 1.43;
+}
+.type-body-12 {
+  font-family: var(--font-fk-grotesk-neue);
+  font-size: var(--text-12);
+  font-weight: 400;
+  line-height: 1;
+}

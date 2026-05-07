@@ -1,0 +1,92 @@
+import { useState } from 'react';
+import './Quiz.css';
+
+const QUESTION = {
+  prompt: 'Which AWS service is best suited for hosting a static React app with a CI/CD pipeline tied to a Git repo?',
+  options: [
+    { id: 'a', label: 'Amazon EC2' },
+    { id: 'b', label: 'AWS Amplify Hosting' },
+    { id: 'c', label: 'Amazon S3 (alone, with no other services)' },
+    { id: 'd', label: 'AWS Lambda' },
+  ],
+  correct: 'b',
+  explanation:
+    'Amplify Hosting connects directly to your Git repo, builds on each push, and serves the app over a CDN — no extra glue needed.',
+};
+
+export default function Quiz() {
+  const [selected, setSelected] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const isCorrect = submitted && selected === QUESTION.correct;
+
+  return (
+    <section className="quiz">
+      <span className="quiz__eyebrow type-subheading">Knowledge check</span>
+      <h3 className="quiz__prompt type-h2">{QUESTION.prompt}</h3>
+
+      <ul className="quiz__options">
+        {QUESTION.options.map((opt) => {
+          const chosen = selected === opt.id;
+          const correct = submitted && opt.id === QUESTION.correct;
+          const wrong = submitted && chosen && opt.id !== QUESTION.correct;
+          return (
+            <li key={opt.id}>
+              <button
+                type="button"
+                className={[
+                  'quiz__option',
+                  'type-body',
+                  chosen && 'quiz__option--chosen',
+                  correct && 'quiz__option--correct',
+                  wrong && 'quiz__option--wrong',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                onClick={() => !submitted && setSelected(opt.id)}
+                disabled={submitted}
+              >
+                <span className="quiz__option-letter type-small-body">
+                  {opt.id.toUpperCase()}
+                </span>
+                <span>{opt.label}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+
+      {!submitted ? (
+        <button
+          type="button"
+          className="quiz__submit type-small-body"
+          onClick={() => setSubmitted(true)}
+          disabled={selected == null}
+        >
+          Check answer
+        </button>
+      ) : (
+        <div
+          className={`quiz__feedback type-body ${
+            isCorrect ? 'quiz__feedback--correct' : 'quiz__feedback--wrong'
+          }`}
+        >
+          <strong className="type-subheading">
+            {isCorrect ? 'Correct.' : 'Not quite.'}
+          </strong>{' '}
+          {QUESTION.explanation}
+          <button
+            type="button"
+            className="quiz__retry type-small-body-14"
+            onClick={() => {
+              setSelected(null);
+              setSubmitted(false);
+            }}
+          >
+            Try again
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}

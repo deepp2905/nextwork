@@ -1,0 +1,58 @@
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 12px 0;
+}
+
+.checklist__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  margin-left: -8px;
+  border-radius: 8px;
+  transition: background-color 120ms ease;
+}
+
+.checklist__row:hover {
+  background: var(--color-linen);
+}
+
+.checklist__box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-stone-gray);
+  background: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.checklist__box--checked {
+  background: var(--color-dark-gray);
+  border-color: var(--color-dark-gray);
+}
+
+.checklist__tick {
+  color: var(--color-white);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.checklist__label {
+  color: var(--color-dark-gray);
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+}
+
+.checklist__label--checked {
+  color: var(--color-stone-gray);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-stone-gray);
+}
