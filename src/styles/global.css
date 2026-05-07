@@ -39,3 +39,8 @@ ul {
   padding: 0;
   list-style: none;
 }
+
+::selection {
+  background: var(--color-dark-gray);
+  color: var(--color-white);
+}

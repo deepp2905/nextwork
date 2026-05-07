@@ -24,7 +24,15 @@ export default function App() {
             exit={{ width: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 32 }}
           >
-            <AskPanel onClose={() => setActiveTab(null)} />
+            <motion.div
+              className="ask-wrapper__inner"
+              initial={{ x: -400 }}
+              animate={{ x: 0 }}
+              exit={{ x: -400 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 32 }}
+            >
+              <AskPanel onClose={() => setActiveTab(null)} />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

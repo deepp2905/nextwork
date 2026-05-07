@@ -154,6 +154,7 @@ export default function Document() {
           panel any time you&rsquo;d like to dig deeper into a specific step.
         </p>
       </footer>
+      
     </article>
   );
 }
