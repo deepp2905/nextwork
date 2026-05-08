@@ -22,7 +22,7 @@ export default function Quiz() {
 
   return (
     <section className="quiz">
-      <span className="quiz__eyebrow type-subheading">Knowledge check</span>
+      <span className="quiz__eyebrow type-subheading type-eyebrow">Knowledge check</span>
       <h3 className="quiz__prompt type-h2">{QUESTION.prompt}</h3>
 
       <ul className="quiz__options">

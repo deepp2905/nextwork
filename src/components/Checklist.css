@@ -40,7 +40,7 @@
 
 .checklist__tick {
   color: var(--color-white);
-  font-size: 12px;
+  font-size: var(--text-12);
   line-height: 1;
 }
 

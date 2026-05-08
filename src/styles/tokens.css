@@ -11,8 +11,7 @@
   --color-stone-gray: #b7ada8;
 
   /* Typography – raw */
-  --font-suisse-neue: 'Inter', system-ui, sans-serif;
-  --font-fk-grotesk-neue: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --text-12: 12px;
   --text-14: 14px;
   --text-16: 16px;
@@ -24,62 +23,59 @@
 
 /* Typography – semantic styles */
 .type-h1 {
-  font-family: var(--font-suisse-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-36);
   font-weight: 800;
   line-height: 1.11;
-}
-.type-h1-36 {
-  font-family: var(--font-suisse-neue);
-  font-size: var(--text-36);
-  font-weight: 600;
-  line-height: 1.11;
+  letter-spacing: -0.02em;
 }
 .type-h1-24 {
-  font-family: var(--font-suisse-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-24);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.33;
+  letter-spacing: -0.02em;
 }
 .type-h2 {
-  font-family: var(--font-suisse-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-20);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.4;
+  letter-spacing: -0.02em;
 }
 .type-large-body {
-  font-family: var(--font-fk-grotesk-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-18);
   font-weight: 400;
-  line-height: 1.78;
+  line-height: 1.6;
 }
 .type-body {
-  font-family: var(--font-fk-grotesk-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-16);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .type-subheading {
-  font-family: var(--font-fk-grotesk-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-14);
   font-weight: 600;
   line-height: 1.43;
 }
 .type-small-body {
-  font-family: var(--font-fk-grotesk-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-14);
   font-weight: 500;
-  line-height: 1.43;
+  line-height: 1.6;
 }
 .type-small-body-14 {
-  font-family: var(--font-fk-grotesk-neue);
+  font-family: var(--font-sans);
   font-size: var(--text-14);
   font-weight: 400;
-  line-height: 1.43;
+  line-height: 1.6;
 }
-.type-body-12 {
-  font-family: var(--font-fk-grotesk-neue);
-  font-size: var(--text-12);
-  font-weight: 400;
-  line-height: 1;
+
+/* Eyebrow utility – pair with a type-* class for size/weight */
+.type-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }

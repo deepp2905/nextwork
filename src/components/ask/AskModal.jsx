@@ -38,7 +38,7 @@ export default function AskModal({
       transition={{ duration: 0.18, ease: 'easeOut' }}
     >
       <div className="ask-modal__header">
-        <span className="type-small-body-14 ask-modal__title">
+        <span className="type-small-body-14 type-eyebrow ask-modal__title">
           A few quick questions
         </span>
         <div className="ask-modal__nav">

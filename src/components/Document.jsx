@@ -6,7 +6,7 @@ function ImagePlaceholder({ caption, ratio = '16 / 9' }) {
   return (
     <figure className="doc-image">
       <div className="doc-image__frame" style={{ aspectRatio: ratio }}>
-        <span className="doc-image__hint type-small-body-14">Image</span>
+        <span className="doc-image__hint type-small-body-14 type-eyebrow">Image</span>
       </div>
       {caption && (
         <figcaption className="doc-image__caption type-small-body-14">
@@ -21,7 +21,7 @@ function Step({ index, title, children }) {
   return (
     <section className="doc-step">
       <div className="doc-step__header">
-        <span className="doc-step__index type-subheading">
+        <span className="doc-step__index type-subheading type-eyebrow">
           Step {String(index).padStart(2, '0')}
         </span>
         <h2 className="doc-step__title type-h1-24">{title}</h2>
@@ -37,7 +37,7 @@ export default function Document() {
       <ImagePlaceholder ratio="3 / 1" />
 
       <header className="doc__header">
-        <span className="doc__eyebrow type-subheading">Tutorial · 25 min</span>
+        <span className="doc__eyebrow type-subheading type-eyebrow">Tutorial · 25 min</span>
         <h1 className="doc__title type-h1">Deploy a Web App on AWS</h1>
         <p className="doc__lede type-large-body">
           A step-by-step guide to taking a React app from your laptop to a live
@@ -67,7 +67,7 @@ export default function Document() {
           billing alerts so a runaway service can&rsquo;t surprise you.
         </p>
         <ImagePlaceholder caption="The AWS console after first sign-in." />
-        <h3 className="doc-step__sub type-subheading">Before you move on</h3>
+        <h3 className="doc-step__sub type-subheading type-eyebrow">Before you move on</h3>
         <Checklist
           items={[
             'Account is created and verified',

@@ -9,8 +9,6 @@
 .quiz__eyebrow {
   display: inline-block;
   color: var(--color-stone-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   margin-bottom: 12px;
 }
 

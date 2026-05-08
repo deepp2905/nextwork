@@ -10,8 +10,7 @@
 .doc__eyebrow {
   display: inline-block;
   color: var(--color-stone-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: capitalize;
   margin-bottom: 16px;
 }
 
@@ -50,8 +49,6 @@
 .doc-step__index {
   display: inline-block;
   color: var(--color-stone-gray);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   margin-bottom: 8px;
 }
 
@@ -67,7 +64,7 @@
 
 .doc-step__body code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 14px;
+  font-size: var(--text-14);
   padding: 2px 6px;
   border-radius: 6px;
   background: var(--color-linen);
@@ -77,8 +74,6 @@
   display: block;
   margin: 20px 0 8px;
   color: var(--color-stone-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
 }
 
 .doc-image {
@@ -97,8 +92,6 @@
 
 .doc-image__hint {
   color: var(--color-stone-gray);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .doc-image__caption {

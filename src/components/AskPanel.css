@@ -103,8 +103,6 @@
 
 .ask-modal__title {
   color: var(--color-stone-gray);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
 }
 
 .ask-modal__nav {
@@ -121,7 +119,7 @@
   align-items: center;
   justify-content: center;
   color: var(--color-dark-gray);
-  font-size: 18px;
+  font-size: var(--text-18);
   line-height: 1;
 }
 
