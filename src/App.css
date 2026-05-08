@@ -24,6 +24,29 @@
 }
 
 .ask-wrapper__inner {
+  position: relative;
   height: 100%;
-  width: 400px;
+}
+
+.ask-wrapper__handle {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 5;
+  background: transparent;
+  transition: background-color 120ms ease;
+}
+
+.ask-wrapper__handle:hover,
+.app--resizing .ask-wrapper__handle {
+  background: var(--color-stone-gray);
+}
+
+.app--resizing,
+.app--resizing * {
+  cursor: col-resize !important;
+  user-select: none;
 }
