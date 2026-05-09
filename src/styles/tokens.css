@@ -10,6 +10,10 @@
   --color-dark-gray: #1b1918;
   --color-stone-gray: #b7ada8;
 
+  /* Color – Status */
+  --color-success: #11cca6;
+  --color-error: #d97c6e;
+
   /* Typography – raw */
   --font-sans: 'Inter', system-ui, sans-serif;
   --text-12: 12px;

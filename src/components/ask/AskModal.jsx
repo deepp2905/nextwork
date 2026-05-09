@@ -5,10 +5,10 @@ import AskModalOption from './AskModalOption.jsx';
 export default function AskModal({
   stepIndex,
   setStepIndex,
+  reachedLast,
   answers,
   customText,
   isAnswered,
-  allAnswered,
   pickSingle,
   toggleMulti,
   updateCustom,
@@ -17,6 +17,7 @@ export default function AskModal({
   const totalSteps = CLARIFY_QUESTIONS.length;
   const currentQuestion = CLARIFY_QUESTIONS[stepIndex];
   const isLast = stepIndex === totalSteps - 1;
+  const showSubmit = isLast || reachedLast;
   const currentDone = isAnswered(currentQuestion.id);
 
   const goPrev = () => setStepIndex(Math.max(0, stepIndex - 1));
@@ -130,10 +131,10 @@ export default function AskModal({
         <button
           type="button"
           className="ask-modal__submit type-small-body-14"
-          disabled={isLast ? !allAnswered : !currentDone}
-          onClick={isLast ? onSubmit : goNext}
+          disabled={showSubmit ? false : !currentDone}
+          onClick={showSubmit ? onSubmit : goNext}
         >
-          {isLast ? 'Submit' : 'Next'}
+          {showSubmit ? 'Submit' : 'Next'}
         </button>
       </div>
     </motion.div>

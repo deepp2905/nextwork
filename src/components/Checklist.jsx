@@ -31,16 +31,26 @@ export default function Checklist({ items }) {
               >
                 <AnimatePresence mode="popLayout" initial={false}>
                   {isChecked && (
-                    <motion.span
+                    <svg
                       key="tick"
                       className="checklist__tick"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.5, transition: { duration: 0 } }}
-                      transition={{ duration: 0.1, ease: 'easeOut' }}
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
                     >
-                      ✓
-                    </motion.span>
+                      <motion.path
+                        d="M2.5 6.25 5 8.75 9.5 3.75"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        exit={{ pathLength: 0, transition: { duration: 0 } }}
+                        transition={{ duration: 0.12, ease: [0.65, 0, 0.35, 1] }}
+                      />
+                    </svg>
                   )}
                 </AnimatePresence>
               </span>

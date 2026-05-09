@@ -25,7 +25,7 @@ export default function Quiz() {
       <span className="quiz__eyebrow type-subheading type-eyebrow">Knowledge check</span>
       <h3 className="quiz__prompt type-h2">{QUESTION.prompt}</h3>
 
-      <ul className="quiz__options">
+      <ul className="quiz__options" role="radiogroup" aria-label={QUESTION.prompt}>
         {QUESTION.options.map((opt) => {
           const chosen = selected === opt.id;
           const correct = submitted && opt.id === QUESTION.correct;
@@ -34,6 +34,8 @@ export default function Quiz() {
             <li key={opt.id}>
               <button
                 type="button"
+                role="radio"
+                aria-checked={chosen}
                 className={[
                   'quiz__option',
                   'type-body',
@@ -67,14 +69,14 @@ export default function Quiz() {
         </button>
       ) : (
         <div
-          className={`quiz__feedback type-body ${
+          className={`quiz__feedback ${
             isCorrect ? 'quiz__feedback--correct' : 'quiz__feedback--wrong'
           }`}
         >
-          <strong className="type-subheading">
-            {isCorrect ? 'Correct.' : 'Not quite.'}
-          </strong>{' '}
-          {QUESTION.explanation}
+          <p className="quiz__feedback-text type-body">
+            <strong>{isCorrect ? 'Correct.' : 'Not quite.'}</strong>{' '}
+            {QUESTION.explanation}
+          </p>
           <button
             type="button"
             className="quiz__retry type-small-body-14"

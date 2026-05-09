@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AskPanel from './components/AskPanel.jsx';
 import Document from './components/Document.jsx';
 import MenuBar from './components/MenuBar.jsx';
+import SelectionPopup from './components/selection/SelectionPopup.jsx';
 import './App.css';
 
 const ASK_MIN = 320;
@@ -13,10 +14,16 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(null);
   const [askWidth, setAskWidth] = useState(ASK_DEFAULT);
   const [isResizing, setIsResizing] = useState(false);
+  const [pendingQuote, setPendingQuote] = useState(null);
   const resizingRef = useRef(false);
 
   const handleTabSelect = (tab) => {
     setActiveTab((prev) => (prev === tab ? null : tab));
+  };
+
+  const handleAskFromSelection = (text) => {
+    setPendingQuote(text);
+    setActiveTab('ask');
   };
 
   const startResize = (e) => {
@@ -65,7 +72,11 @@ export default function App() {
               exit={{ x: -askWidth }}
               transition={{ type: 'spring', stiffness: 280, damping: 32 }}
             >
-              <AskPanel onClose={() => setActiveTab(null)} />
+              <AskPanel
+                onClose={() => setActiveTab(null)}
+                pendingQuote={pendingQuote}
+                onClearQuote={() => setPendingQuote(null)}
+              />
               <div
                 className="ask-wrapper__handle"
                 onMouseDown={startResize}
@@ -80,6 +91,7 @@ export default function App() {
       <main className="app__main">
         <Document />
       </main>
+      <SelectionPopup articleSelector=".doc" onAsk={handleAskFromSelection} />
       <MenuBar activeTab={activeTab} onSelect={handleTabSelect} />
     </div>
   );

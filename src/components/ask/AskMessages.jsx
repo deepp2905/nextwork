@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export default function AskMessages({ messages, thinking }) {
+export default function AskMessages({ messages, thinking, centered }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -11,7 +11,10 @@ export default function AskMessages({ messages, thinking }) {
   }, [messages, thinking]);
 
   return (
-    <div className="ask-panel__messages" ref={ref}>
+    <div
+      className={`ask-panel__messages${centered ? ' ask-panel__messages--centered' : ''}`}
+      ref={ref}
+    >
       {messages.map((m, i) => (
         <motion.div
           key={i}
@@ -20,7 +23,7 @@ export default function AskMessages({ messages, thinking }) {
           transition={{ duration: 0.2, ease: 'easeOut' }}
           className={`ask-panel__message ask-panel__message--${m.from} type-body`}
         >
-          {m.text}
+          {m.node ?? m.text}
         </motion.div>
       ))}
       <AnimatePresence>
