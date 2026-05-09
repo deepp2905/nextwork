@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import AskMessages from './ask/AskMessages.jsx';
 import AskComposer from './ask/AskComposer.jsx';
-import { Sparkle } from './icons/Icons';
+import { Sparkle, Close } from './icons/Icons';
 import { formatAnswer, pickRandomQuestions } from './ask/clarifyQuestions.js';
 import './AskPanel.css';
 
@@ -33,7 +33,9 @@ function WelcomeBubble() {
       <motion.span
         className="ask-panel__welcome-icon"
         initial={{ rotate: -540 }}
-        animate={{ rotate: 0 }}fdf
+        animate={{ rotate: 0 }}
+        transition={{ ease: 'easeInOut', duration: 1.6, delay: 0.0 }}
+      >
         <Sparkle size={28} />
       </motion.span>
       <h2 className="ask-panel__welcome type-h2">
@@ -181,11 +183,11 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         <motion.button
           type="button"
           whileTap={{ scale: 0.95 }}
-          className="ask-panel__close type-small-body-14"
+          className="ask-panel__close"
           onClick={onClose}
           aria-label="Close Ask panel"
         >
-          ✕
+          <Close />
         </motion.button>
       </header>
 

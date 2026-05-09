@@ -47,6 +47,13 @@
   line-height: 1.4;
   letter-spacing: -0.02em;
 }
+.type-h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-18);
+  font-weight: 600;
+  line-height: 1.44;
+  letter-spacing: -0.01em;
+}
 .type-large-body {
   font-family: var(--font-sans);
   font-size: var(--text-18);

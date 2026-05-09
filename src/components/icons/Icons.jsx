@@ -38,6 +38,13 @@ export const Cross = ({ size = 12, ...props }) => (
   </svg>
 );
 
+export const Close = ({ size = 16, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
+    <path d="M4 4 12 12" />
+    <path d="M12 4 4 12" />
+  </svg>
+);
+
 export const ArrowUp = ({ size = 16, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
     <path d="M8 13V3" />

@@ -41,6 +41,19 @@ ul {
 }
 
 ::selection {
-  background: var(--color-dark-gray);
-  color: var(--color-white);
+  background: var(--color-gainsboro);
+  color: var(--color-dark-gray);
+}
+
+* {
+  transition: outline-offset 120ms ease-out;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-stone-gray);
+  outline-offset: 2px;
 }
