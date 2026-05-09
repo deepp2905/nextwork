@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { CLARIFY_QUESTIONS } from './clarifyQuestions';
 import AskModalOption from './AskModalOption.jsx';
 
 export default function AskModal({
   stepIndex,
   setStepIndex,
   reachedLast,
+  questions,
   answers,
   customText,
   isAnswered,
@@ -14,8 +14,9 @@ export default function AskModal({
   updateCustom,
   onSubmit,
 }) {
-  const totalSteps = CLARIFY_QUESTIONS.length;
-  const currentQuestion = CLARIFY_QUESTIONS[stepIndex];
+  const totalSteps = questions.length;
+  if (totalSteps === 0) return null;
+  const currentQuestion = questions[stepIndex];
   const isLast = stepIndex === totalSteps - 1;
   const showSubmit = isLast || reachedLast;
   const currentDone = isAnswered(currentQuestion.id);
@@ -68,10 +69,11 @@ export default function AskModal({
       </div>
 
       <div className="ask-modal__dots" role="tablist">
-        {CLARIFY_QUESTIONS.map((q, i) => (
-          <button
+        {questions.map((q, i) => (
+          <motion.button
             key={q.id}
             type="button"
+            whileTap={{ scale: 0.98 }}
             className={`ask-modal__dot${
               i === stepIndex ? ' ask-modal__dot--active' : ''
             }${isAnswered(q.id) ? ' ask-modal__dot--done' : ''}`}
@@ -128,14 +130,25 @@ export default function AskModal({
       </AnimatePresence>
 
       <div className="ask-modal__footer">
-        <button
+        {!showSubmit && (
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.95 }}
+            className="ask-modal__skip type-small-body-14"
+            onClick={goNext}
+          >
+            Skip
+          </motion.button>
+        )}
+        <motion.button
           type="button"
+          whileTap={!showSubmit && !currentDone ? undefined : { scale: 0.95 }}
           className="ask-modal__submit type-small-body-14"
           disabled={showSubmit ? false : !currentDone}
           onClick={showSubmit ? onSubmit : goNext}
         >
           {showSubmit ? 'Submit' : 'Next'}
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );

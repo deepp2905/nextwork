@@ -2,8 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function AskModalOption({ label, isMulti, selected, onClick }) {
   return (
-    <button
+    <motion.button
       type="button"
+      whileTap={{ scale: 0.98 }}
       className={`ask-modal__option type-small-body-14${
         selected ? ' ask-modal__option--selected' : ''
       }`}
@@ -40,6 +41,6 @@ export default function AskModalOption({ label, isMulti, selected, onClick }) {
         </span>
       )}
       <span>{label}</span>
-    </button>
+    </motion.button>
   );
 }

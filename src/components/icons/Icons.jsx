@@ -31,6 +31,13 @@ export const Check = ({ size = 12, ...props }) => (
   </svg>
 );
 
+export const Cross = ({ size = 12, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 12 12" {...baseProps} {...props}>
+    <path d="M3 3 9 9" />
+    <path d="M9 3 3 9" />
+  </svg>
+);
+
 export const ArrowUp = ({ size = 16, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
     <path d="M8 13V3" />

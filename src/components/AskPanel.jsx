@@ -3,37 +3,54 @@ import { motion } from 'framer-motion';
 import AskMessages from './ask/AskMessages.jsx';
 import AskComposer from './ask/AskComposer.jsx';
 import { Sparkle } from './icons/Icons';
-import { CLARIFY_QUESTIONS, formatAnswer } from './ask/clarifyQuestions.js';
+import { formatAnswer, pickRandomQuestions } from './ask/clarifyQuestions.js';
 import './AskPanel.css';
 
 const SUGGESTIONS = [
-  'Explain step 3 in more detail',
-  "I'm stuck on AWS setup — help",
-  'Quiz me on what I just read',
+  {
+    label: 'Explain step 3 in more detail',
+    prompt:
+      "Can you walk me through step 3 in more detail? I'd like to understand what each part does, why it's needed, and what could go wrong so I can troubleshoot if something breaks.",
+  },
+  {
+    label: "I'm stuck on AWS setup — help",
+    prompt:
+      "I'm stuck on the AWS setup section. Here's where I am right now: [describe what you tried]. Can you help me figure out what to check next and the most likely thing I'm missing?",
+  },
+  {
+    label: 'Quiz me on what I just read',
+    prompt:
+      'Quiz me on the material I just read. Ask me 3–5 questions that test whether I actually understood the key concepts, and let me know after each answer whether I got it right and why.',
+  },
 ];
 
 const LOREM =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
 
+function WelcomeBubble() {
+  return (
+    <div className="ask-panel__message ask-panel__message--assistant type-body">
+      <motion.span
+        className="ask-panel__welcome-icon"
+        initial={{ rotate: -540 }}
+        animate={{ rotate: 0 }}fdf
+        <Sparkle size={28} />
+      </motion.span>
+      <h2 className="ask-panel__welcome type-h2">
+        Welcome Deep!
+        <br />
+        How can I help you today?
+      </h2>
+      <p className="ask-panel__welcome-body">
+        I&rsquo;m here to help you work through this tutorial. Ask anything, or
+        pick a suggestion below.
+      </p>
+    </div>
+  );
+}
+
 export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
-  const [messages, setMessages] = useState([
-    {
-      from: 'assistant',
-      node: (
-        <>
-          <h2 className="ask-panel__welcome type-h2">
-            Welcome Deep!
-            <br />
-            How can I help you today?
-          </h2>
-          <p className="ask-panel__welcome-body">
-            I&rsquo;m here to help you work through this tutorial. Ask anything,
-            or pick a suggestion below.
-          </p>
-        </>
-      ),
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [draft, setDraft] = useState('');
   const [thinking, setThinking] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -41,11 +58,14 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
   const [reachedLast, setReachedLast] = useState(false);
   const [answers, setAnswers] = useState({});
   const [customText, setCustomText] = useState({});
+  const [activeQuestions, setActiveQuestions] = useState([]);
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (stepIndex === CLARIFY_QUESTIONS.length - 1) setReachedLast(true);
-  }, [stepIndex]);
+    if (activeQuestions.length && stepIndex === activeQuestions.length - 1) {
+      setReachedLast(true);
+    }
+  }, [stepIndex, activeQuestions]);
 
   useEffect(() => {
     if (modalOpen || thinking) return;
@@ -82,6 +102,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
     setCustomText({});
     setStepIndex(0);
     setReachedLast(false);
+    setActiveQuestions(pickRandomQuestions());
     setThinking(true);
     setTimeout(() => {
       setMessages((prev) => [
@@ -132,9 +153,11 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
   };
 
   const submitModal = () => {
-    const userText = CLARIFY_QUESTIONS.map(
-      (q) => `Q: ${q.prompt}\nA: ${formatAnswer(q, answers[q.id], customText[q.id])}`,
-    ).join('\n\n');
+    const userText = activeQuestions
+      .map(
+        (q) => `Q: ${q.prompt}\nA: ${formatAnswer(q, answers[q.id], customText[q.id])}`,
+      )
+      .join('\n\n');
     setMessages((prev) => [...prev, { from: 'user', text: userText }]);
     setModalOpen(false);
     setThinking(true);
@@ -155,38 +178,39 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
   return (
     <aside className="ask-panel" aria-label="Ask">
       <header className="ask-panel__header">
-        <span className="ask-panel__title type-subheading">
-          <Sparkle />
-          Ask
-        </span>
-        <button
+        <motion.button
           type="button"
+          whileTap={{ scale: 0.95 }}
           className="ask-panel__close type-small-body-14"
           onClick={onClose}
           aria-label="Close Ask panel"
         >
           ✕
-        </button>
+        </motion.button>
       </header>
 
       <AskMessages
         messages={messages}
         thinking={thinking}
         centered={!hasUserMessage && !thinking && !modalOpen}
+        leading={!hasUserMessage ? <WelcomeBubble /> : null}
       />
 
       {!hasUserMessage && !modalOpen && (
         <div className="ask-panel__suggestions">
           {SUGGESTIONS.map((s) => (
             <motion.button
-              key={s}
+              key={s.label}
               type="button"
               whileTap={{ scale: 0.95 }}
               className="ask-panel__chip type-small-body-14"
-              onClick={() => send(s)}
+              onClick={() => {
+                setDraft(s.prompt);
+                inputRef.current?.focus();
+              }}
               disabled={thinking || modalOpen}
             >
-              {s}
+              {s.label}
             </motion.button>
           ))}
         </div>
@@ -204,6 +228,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         stepIndex={stepIndex}
         setStepIndex={setStepIndex}
         reachedLast={reachedLast}
+        questions={activeQuestions}
         answers={answers}
         customText={customText}
         isAnswered={isAnswered}

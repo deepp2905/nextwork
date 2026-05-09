@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Check, Cross } from './icons/Icons';
 import './Quiz.css';
 
 const QUESTION = {
@@ -32,8 +34,9 @@ export default function Quiz() {
           const wrong = submitted && chosen && opt.id !== QUESTION.correct;
           return (
             <li key={opt.id}>
-              <button
+              <motion.button
                 type="button"
+                whileTap={submitted ? undefined : { scale: 0.98 }}
                 role="radio"
                 aria-checked={chosen}
                 className={[
@@ -48,25 +51,34 @@ export default function Quiz() {
                 onClick={() => !submitted && setSelected(opt.id)}
                 disabled={submitted}
               >
-                <span className="quiz__option-letter type-small-body">
-                  {opt.id.toUpperCase()}
-                </span>
-                <span>{opt.label}</span>
-              </button>
+                <span className="quiz__option-radio" aria-hidden="true" />
+                <span className="quiz__option-label">{opt.label}</span>
+                {correct && (
+                  <span className="quiz__option-badge quiz__option-badge--correct" aria-hidden="true">
+                    <Check />
+                  </span>
+                )}
+                {wrong && (
+                  <span className="quiz__option-badge quiz__option-badge--wrong" aria-hidden="true">
+                    <Cross />
+                  </span>
+                )}
+              </motion.button>
             </li>
           );
         })}
       </ul>
 
       {!submitted ? (
-        <button
+        <motion.button
           type="button"
+          whileTap={selected == null ? undefined : { scale: 0.95 }}
           className="quiz__submit type-small-body"
           onClick={() => setSubmitted(true)}
           disabled={selected == null}
         >
           Check answer
-        </button>
+        </motion.button>
       ) : (
         <div
           className={`quiz__feedback ${
@@ -77,8 +89,9 @@ export default function Quiz() {
             <strong>{isCorrect ? 'Correct.' : 'Not quite.'}</strong>{' '}
             {QUESTION.explanation}
           </p>
-          <button
+          <motion.button
             type="button"
+            whileTap={{ scale: 0.95 }}
             className="quiz__retry type-small-body-14"
             onClick={() => {
               setSelected(null);
@@ -86,7 +99,7 @@ export default function Quiz() {
             }}
           >
             Try again
-          </button>
+          </motion.button>
         </div>
       )}
     </section>

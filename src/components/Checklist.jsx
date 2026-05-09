@@ -19,8 +19,9 @@ export default function Checklist({ items }) {
         const isChecked = checked.has(i);
         return (
           <li key={i} className="checklist__item">
-            <button
+            <motion.button
               type="button"
+              whileTap={{ scale: 0.98 }}
               className="checklist__row"
               onClick={() => toggle(i)}
               aria-pressed={isChecked}
@@ -70,7 +71,7 @@ export default function Checklist({ items }) {
                   }
                 />
               </span>
-            </button>
+            </motion.button>
           </li>
         );
       })}

@@ -14,6 +14,7 @@ export default function AskComposer({
   stepIndex,
   setStepIndex,
   reachedLast,
+  questions,
   answers,
   customText,
   isAnswered,
@@ -37,14 +38,15 @@ export default function AskComposer({
           >
             <div className="ask-panel__quote-inner">
               <span className="ask-panel__quote-text type-small-body-14">{pendingQuote}</span>
-              <button
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.95 }}
                 className="ask-panel__quote-close"
                 onClick={onClearQuote}
                 aria-label="Remove quoted text"
               >
                 ✕
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         )}
@@ -55,6 +57,7 @@ export default function AskComposer({
             stepIndex={stepIndex}
             setStepIndex={setStepIndex}
             reachedLast={reachedLast}
+            questions={questions}
             answers={answers}
             customText={customText}
             isAnswered={isAnswered}
