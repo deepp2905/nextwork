@@ -1,0 +1,11 @@
+[data-doc-color-theme="marigold"] {
+  --doc-bg: #fffbf2;
+  --doc-surface: #fbf3df;
+  --doc-fg: #1a1815;
+  --doc-muted: #857461;
+  --doc-eyebrow: #c2562e;
+  --doc-primary: #e8703a;
+  --doc-primary-contrast: #fffbf2;
+  --doc-border: #e8dcc4;
+  --doc-image-bg: #f5ecdb;
+}

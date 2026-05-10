@@ -1,11 +1,15 @@
+import { motion } from 'framer-motion';
 import Tooltip from './Tooltip';
 import './DocThemeToolbar.css';
 
 const COLOR_OPTIONS = [
   { key: 'light', label: 'Light', bg: '#ffffff', primary: '#0f9d8a' },
-  { key: 'dark', label: 'Dark', bg: '#0c0d10', primary: '#22d3ee' },
-  { key: 'warm-cream', label: 'Warm Cream', bg: '#f5ebe0', primary: '#c2562e' },
   { key: 'bold-accent', label: 'Bold Accent', bg: '#ffffff', primary: '#7c3aed' },
+  { key: 'marigold', label: 'Marigold', bg: '#fffbf2', primary: '#e8703a' },
+  { key: 'bookshelf', label: 'Bookshelf', bg: '#fdf9f1', primary: '#3d6b4a' },
+  { key: 'dark', label: 'Dark', bg: '#0c0d10', primary: '#22d3ee' },
+  { key: 'graphite', label: 'Graphite', bg: '#0f1115', primary: '#6ea8fe' },
+  
 ];
 
 const TYPE_OPTIONS = [
@@ -16,22 +20,22 @@ const TYPE_OPTIONS = [
     fontWeight: 700,
   },
   {
-    key: 'serif',
-    label: 'Serif',
-    fontFamily: "'Playfair Display', Georgia, serif",
-    fontWeight: 700,
-  },
-  {
     key: 'display',
     label: 'Display',
     fontFamily: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif",
     fontWeight: 700,
   },
   {
-    key: 'minimal',
-    label: 'Minimal',
-    fontFamily: "'IBM Plex Sans', system-ui, sans-serif",
-    fontWeight: 500,
+    key: 'editorial',
+    label: 'Editorial',
+    fontFamily: "'Fraunces', 'Playfair Display', Georgia, serif",
+    fontWeight: 600,
+  },
+  {
+    key: 'technical',
+    label: 'Technical',
+    fontFamily: "'Inter Tight', 'Inter', system-ui, sans-serif",
+    fontWeight: 700,
   },
 ];
 
@@ -48,8 +52,9 @@ function ColorSwatches({ value, onChange }) {
           const active = opt.key === value;
           return (
             <Tooltip key={opt.key} label={opt.label} placement="bottom">
-              <button
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.9 }}
                 role="radio"
                 aria-checked={active}
                 aria-label={opt.label}
@@ -59,7 +64,7 @@ function ColorSwatches({ value, onChange }) {
                 onClick={() => onChange(opt.key)}
               >
                 <span className="doc-swatch__dot" aria-hidden="true" />
-              </button>
+              </motion.button>
             </Tooltip>
           );
         })}
@@ -81,8 +86,9 @@ function TypeSwatches({ value, onChange }) {
           const active = opt.key === value;
           return (
             <Tooltip key={opt.key} label={opt.label} placement="bottom">
-              <button
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.9 }}
                 role="radio"
                 aria-checked={active}
                 aria-label={opt.label}
@@ -95,7 +101,7 @@ function TypeSwatches({ value, onChange }) {
                 onClick={() => onChange(opt.key)}
               >
                 <span className="doc-swatch__aa" aria-hidden="true">Aa</span>
-              </button>
+              </motion.button>
             </Tooltip>
           );
         })}

@@ -1,7 +1,7 @@
 export const proofOfWork = {
   eyebrow: 'Proof of Work',
   title: 'Building a Static Website on AWS S3',
-  author: 'Deephema Patel',
+  author: 'Deep Patel',
   completedOn: 'May 10, 2026',
   sections: [
     {

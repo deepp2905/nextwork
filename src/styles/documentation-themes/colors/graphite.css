@@ -1,0 +1,11 @@
+[data-doc-color-theme="graphite"] {
+  --doc-bg: #0f1115;
+  --doc-surface: #1a1d23;
+  --doc-fg: #e8eaed;
+  --doc-muted: #9aa0a6;
+  --doc-eyebrow: #6ea8fe;
+  --doc-primary: #6ea8fe;
+  --doc-primary-contrast: #0f1115;
+  --doc-border: #2a2d35;
+  --doc-image-bg: #1c1f26;
+}

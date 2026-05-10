@@ -2,10 +2,12 @@
 
 @import './colors/light.css';
 @import './colors/dark.css';
-@import './colors/warm-cream.css';
 @import './colors/bold-accent.css';
+@import './colors/graphite.css';
+@import './colors/marigold.css';
+@import './colors/bookshelf.css';
 
 @import './typography/modern.css';
-@import './typography/serif.css';
 @import './typography/display.css';
-@import './typography/minimal.css';
+@import './typography/editorial.css';
+@import './typography/technical.css';
