@@ -78,14 +78,10 @@ export default function App() {
     };
   }, []);
 
-  const askOffset = activeTab === 'ask' ? askWidth : 0;
   const anyResizing = isResizing || isDocResizing;
 
   return (
-    <div
-      className={`app${anyResizing ? ' app--resizing' : ''}`}
-      style={{ '--ask-offset': `${askOffset}px` }}
-    >
+    <div className={`app${anyResizing ? ' app--resizing' : ''}`}>
       <AnimatePresence initial={false}>
         {activeTab === 'ask' && (
           <motion.div

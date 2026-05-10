@@ -1,18 +1,13 @@
 .menu-bar {
   position: fixed;
   bottom: 24px;
-  left: calc(50vw + var(--ask-offset, 0px) / 2);
+  left: 50%;
   transform: translateX(-50%);
   z-index: 20;
   background: var(--color-dark-gray);
   border-radius: 999px;
   padding: 6px;
   box-shadow: 0 12px 32px rgba(27, 25, 24, 0.18);
-  transition: left 280ms cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-.app--resizing .menu-bar {
-  transition: none;
 }
 
 .menu-bar__list {
