@@ -1,7 +1,7 @@
 [data-doc-type-theme="editorial"] {
   --doc-font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
   --doc-font-heading: 'Fraunces', 'Playfair Display', Georgia, serif;
-  --doc-font-body: 'Inter', system-ui, sans-serif;
+  --doc-font-body: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
 
   --doc-h1-size: 40px;
   --doc-h1-weight: 600;

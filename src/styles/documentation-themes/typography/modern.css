@@ -1,7 +1,7 @@
 [data-doc-type-theme="modern"] {
   --doc-font-display: 'Inter', system-ui, sans-serif;
   --doc-font-heading: 'Inter', system-ui, sans-serif;
-  --doc-font-body: 'Inter', system-ui, sans-serif;
+  --doc-font-body: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
 
   --doc-h1-size: 36px;
   --doc-h1-weight: 800;

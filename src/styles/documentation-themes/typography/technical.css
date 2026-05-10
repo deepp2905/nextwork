@@ -1,7 +1,7 @@
 [data-doc-type-theme="technical"] {
   --doc-font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
   --doc-font-heading: 'Inter Tight', 'Inter', system-ui, sans-serif;
-  --doc-font-body: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --doc-font-body: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
   --doc-h1-size: 36px;
   --doc-h1-weight: 700;

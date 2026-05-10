@@ -7,7 +7,7 @@ const COLOR_OPTIONS = [
   { key: 'bold-accent', label: 'Bold Accent', bg: '#ffffff', primary: '#7c3aed' },
   { key: 'marigold', label: 'Marigold', bg: '#fffbf2', primary: '#e8703a' },
   { key: 'bookshelf', label: 'Bookshelf', bg: '#fdf9f1', primary: '#3d6b4a' },
-  { key: 'dark', label: 'Dark', bg: '#0c0d10', primary: '#22d3ee' },
+  { key: 'dark', label: 'Dark', bg: '#0c0d10', primary: '#ee22ee' },
   { key: 'graphite', label: 'Graphite', bg: '#0f1115', primary: '#6ea8fe' },
   
 ];
