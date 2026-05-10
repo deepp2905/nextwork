@@ -9,11 +9,11 @@ import './App.css';
 
 const ASK_MIN = 320;
 const ASK_MAX = 720;
-const ASK_DEFAULT = 400;
+const ASK_DEFAULT = 500;
 
 const DOC_MIN = 320;
-const DOC_MAX = 720;
-const DOC_DEFAULT = 400;
+const DOC_MAX = 1080;
+const DOC_DEFAULT = 720;
 
 export default function App() {
   const [activeTab, setActiveTab] = useState(null);
