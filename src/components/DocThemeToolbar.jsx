@@ -39,12 +39,9 @@ const TYPE_OPTIONS = [
   },
 ];
 
-function ColorSwatches({ value, onChange, onHover }) {
+function ColorSwatches({ value, onChange }) {
   return (
-    <div
-      className="doc-theme-toolbar__group"
-      onMouseLeave={() => onHover?.(null)}
-    >
+    <div className="doc-theme-toolbar__group">
       <span className="doc-theme-toolbar__label">Color</span>
       <div
         className="doc-theme-toolbar__swatches"
@@ -65,9 +62,6 @@ function ColorSwatches({ value, onChange, onHover }) {
                 data-active={active ? 'true' : 'false'}
                 style={{ '--swatch-bg': opt.bg, '--swatch-primary': opt.primary }}
                 onClick={() => onChange(opt.key)}
-                onMouseEnter={() => onHover?.(opt.key)}
-                onFocus={() => onHover?.(opt.key)}
-                onBlur={() => onHover?.(null)}
               >
                 <span className="doc-swatch__dot" aria-hidden="true" />
               </motion.button>
@@ -79,12 +73,9 @@ function ColorSwatches({ value, onChange, onHover }) {
   );
 }
 
-function TypeSwatches({ value, onChange, onHover }) {
+function TypeSwatches({ value, onChange }) {
   return (
-    <div
-      className="doc-theme-toolbar__group"
-      onMouseLeave={() => onHover?.(null)}
-    >
+    <div className="doc-theme-toolbar__group">
       <span className="doc-theme-toolbar__label">Typography</span>
       <div
         className="doc-theme-toolbar__swatches"
@@ -108,9 +99,6 @@ function TypeSwatches({ value, onChange, onHover }) {
                   '--swatch-weight': opt.fontWeight,
                 }}
                 onClick={() => onChange(opt.key)}
-                onMouseEnter={() => onHover?.(opt.key)}
-                onFocus={() => onHover?.(opt.key)}
-                onBlur={() => onHover?.(null)}
               >
                 <span className="doc-swatch__aa" aria-hidden="true">Aa</span>
               </motion.button>
@@ -127,20 +115,16 @@ export default function DocThemeToolbar({
   typeTheme,
   onColorChange,
   onTypeChange,
-  onColorHover,
-  onTypeHover,
 }) {
   return (
     <div className="doc-theme-toolbar">
       <ColorSwatches
         value={colorTheme}
         onChange={onColorChange}
-        onHover={onColorHover}
       />
       <TypeSwatches
         value={typeTheme}
         onChange={onTypeChange}
-        onHover={onTypeHover}
       />
     </div>
   );

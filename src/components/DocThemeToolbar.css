@@ -68,7 +68,7 @@
 }
 
 .doc-swatch[data-active='true'] {
-  box-shadow: 0 0 0 1px var(--color-stone-gray);
+  box-shadow: 0 0 0 2px var(--color-stone-gray);
 }
 
 .doc-swatch:focus-visible {

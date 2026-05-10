@@ -8,8 +8,6 @@ import './DocumentationPanel.css';
 export default function DocumentationPanel({ onClose }) {
   const [colorTheme, setColorTheme] = useState('light');
   const [typeTheme, setTypeTheme] = useState('modern');
-  const [hoverColor, setHoverColor] = useState(null);
-  const [hoverType, setHoverType] = useState(null);
 
   return (
     <aside className="doc-panel" aria-label="Documentation">
@@ -27,16 +25,14 @@ export default function DocumentationPanel({ onClose }) {
       </header>
       <div
         className="doc-panel__themed"
-        data-doc-color-theme={hoverColor ?? colorTheme}
-        data-doc-type-theme={hoverType ?? typeTheme}
+        data-doc-color-theme={colorTheme}
+        data-doc-type-theme={typeTheme}
       >
         <DocThemeToolbar
           colorTheme={colorTheme}
           typeTheme={typeTheme}
           onColorChange={setColorTheme}
           onTypeChange={setTypeTheme}
-          onColorHover={setHoverColor}
-          onTypeHover={setHoverType}
         />
         <div className="doc-panel__scroll">
           <DocumentationMock />
