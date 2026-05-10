@@ -45,6 +45,34 @@
   background: var(--color-stone-gray);
 }
 
+.doc-wrapper {
+  flex-shrink: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.doc-wrapper__inner {
+  position: relative;
+  height: 100%;
+}
+
+.doc-wrapper__handle {
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 5;
+  background: transparent;
+  transition: background-color 120ms ease;
+}
+
+.doc-wrapper__handle:hover,
+.app--resizing .doc-wrapper__handle {
+  background: var(--color-stone-gray);
+}
+
 .app--resizing,
 .app--resizing * {
   cursor: col-resize !important;
