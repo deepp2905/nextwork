@@ -3,6 +3,11 @@
   max-width: 760px;
 }
 
+.doc-image,
+.doc-code {
+  user-select: none;
+}
+
 .doc__header {
   margin: 32px 0 40px;
 }
@@ -29,7 +34,7 @@
   padding: 24px 28px;
   background: var(--color-white);
   border: 1px solid var(--color-gainsboro);
-  border-radius: 24px;
+  border-radius: 16px;
 }
 
 .doc__overview h2 {
@@ -67,7 +72,6 @@
   font-size: var(--text-14);
   padding: 2px 6px;
   border-radius: 6px;
-  background: var(--color-linen);
 }
 
 .doc-step__sub {
@@ -83,7 +87,7 @@
 .doc-image__frame {
   width: 100%;
   background: var(--color-linen);
-  border-radius: 24px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,12 +104,97 @@
   color: var(--color-stone-gray);
 }
 
+.doc-quote {
+  margin: 24px 0;
+  padding: 16px 16px 8px 16px;
+  background: var(--color-linen);
+  border-left: 3px solid var(--color-stone-gray);
+}
+
+.doc-quote__title {
+  margin: 0 0 8px;
+  color: var(--color-dark-gray);
+}
+
+.doc-quote__body {
+  margin: 0;
+  color: var(--color-dark-gray);
+}
+
+.doc-code {
+  margin: 20px 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-gainsboro);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.doc-code__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 8px 16px;
+  background: var(--color-linen);
+  border-bottom: 1px solid var(--color-gainsboro);
+}
+
+.doc-code__lang {
+  color: var(--color-dark-gray);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.doc-code__copy {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-stone-gray);
+  background: transparent;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.doc-code__copy:hover {
+  background: var(--color-gainsboro);
+  color: var(--color-dark-gray);
+}
+
+.doc-code__copy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.doc-code__pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  color: var(--color-dark-gray);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-14);
+  line-height: 1.55;
+}
+
+.doc-step__body .doc-code__code {
+  font-family: inherit;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  white-space: pre;
+  font-size: inherit;
+}
+
 .doc__footer {
   margin: 64px 0 0;
   padding: 28px;
   background: var(--color-white);
   border: 1px solid var(--color-gainsboro);
-  border-radius: 24px;
+  border-radius: 16px;
 }
 
 .doc__footer h2 {

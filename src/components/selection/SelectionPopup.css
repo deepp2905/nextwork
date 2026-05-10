@@ -39,8 +39,9 @@
 }
 
 .doc__highlight {
-  background: var(--color-stone-gray);
+  background: var(--color-gainsboro);
   color: inherit;
   padding: 1px 2px;
   border-radius: 3px;
+  cursor: text;
 }
