@@ -1,0 +1,11 @@
+[data-doc-color-theme="bold-accent"] {
+  --doc-bg: #ffffff;
+  --doc-surface: #fbfbff;
+  --doc-fg: #0b0b15;
+  --doc-muted: #5b5b7a;
+  --doc-eyebrow: #7c3aed;
+  --doc-primary: #7c3aed;
+  --doc-primary-contrast: #ffffff;
+  --doc-border: #ece8ff;
+  --doc-image-bg: #f3f0ff;
+}
