@@ -113,10 +113,10 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
         <motion.div
           className="selection-popup"
           style={{ top: popup.top, left: popup.left }}
-          initial={{ opacity: 0, y: 0, scale: 0.96 }}
+          initial={{ opacity: 0, y: -120, scale: 0.96 }}
           animate={{ opacity: 1, y: -60, scale: 1 }}
-          exit={{ opacity: 0, y: 0, scale: 0.96, transition: { duration: 0.08 } }}
-          transition={{ duration: 0.16, ease: 'easeOut' }}
+          exit={{ opacity: 0, y: -120, scale: 0.96, transition: { duration: 0.08, ease: 'easeIn'  } }}
+          transition={{ duration: 0.12, ease: 'easeOut' }}
           onMouseDown={(e) => e.preventDefault()}
         >
           <motion.button
