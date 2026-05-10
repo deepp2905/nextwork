@@ -336,8 +336,28 @@
 
 .ask-modal__footer {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
+}
+
+.ask-modal__footer-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.ask-modal__skip-link {
+  padding: 8px 4px;
+  background: transparent;
+  color: var(--color-stone-gray);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 120ms ease;
+}
+
+.ask-modal__skip-link:hover {
+  color: var(--color-dark-gray);
 }
 
 .ask-modal__skip {

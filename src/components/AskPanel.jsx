@@ -91,7 +91,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [modalOpen, thinking]);
 
-  const aiDelay = () => 2000 + Math.random() * 3000;
+  const aiDelay = () => 1000 + Math.random() * 1000;
 
   const send = (text) => {
     const value = text.trim();
@@ -175,6 +175,21 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
     }, aiDelay());
   };
 
+  const skipModal = () => {
+    setModalOpen(false);
+    setThinking(true);
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          from: 'assistant',
+          text: `No problem — here's a general answer:\n\n${LOREM}`,
+        },
+      ]);
+      setThinking(false);
+    }, aiDelay());
+  };
+
   const hasUserMessage = messages.some((m) => m.from === 'user');
 
   return (
@@ -238,6 +253,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         toggleMulti={toggleMulti}
         updateCustom={updateCustom}
         onSubmitModal={submitModal}
+        onSkipModal={skipModal}
       />
     </aside>
   );

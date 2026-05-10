@@ -22,6 +22,7 @@ export default function AskComposer({
   toggleMulti,
   updateCustom,
   onSubmitModal,
+  onSkipModal,
 }) {
   const showQuote = !modalOpen && !!pendingQuote;
   return (
@@ -65,6 +66,7 @@ export default function AskComposer({
             toggleMulti={toggleMulti}
             updateCustom={updateCustom}
             onSubmit={onSubmitModal}
+            onSkip={onSkipModal}
           />
         ) : (
           <AskInputRow

@@ -14,6 +14,7 @@ export default function AskModal({
   toggleMulti,
   updateCustom,
   onSubmit,
+  onSkip,
 }) {
   const totalSteps = questions.length;
   if (totalSteps === 0) return null;
@@ -135,24 +136,36 @@ export default function AskModal({
       </motion.div>
 
       <div className="ask-modal__footer">
-        {stepIndex > 0 && (
+        {onSkip && (
           <motion.button
             type="button"
             whileTap={{ scale: 0.95 }}
-            className="ask-modal__skip type-small-body-14"
-            onClick={goPrev}
+            className="ask-modal__skip-link type-small-body-14"
+            onClick={onSkip}
           >
-            Back
+            Skip questions
           </motion.button>
         )}
-        <motion.button
-          type="button"
-          whileTap={{ scale: 0.95 }}
-          className="ask-modal__submit type-small-body-14"
-          onClick={showSubmit ? onSubmit : goNext}
-        >
-          {showSubmit ? 'Submit' : 'Next'}
-        </motion.button>
+        <div className="ask-modal__footer-actions">
+          {stepIndex > 0 && (
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.95 }}
+              className="ask-modal__skip type-small-body-14"
+              onClick={goPrev}
+            >
+              Back
+            </motion.button>
+          )}
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.95 }}
+            className="ask-modal__submit type-small-body-14"
+            onClick={showSubmit ? onSubmit : goNext}
+          >
+            {showSubmit ? 'Submit' : 'Next'}
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );
