@@ -65,6 +65,11 @@ export default function AskModal({
             transition={{ duration: 0.15, ease: 'easeOut' }}
           >
             {currentQuestion.prompt}
+            {currentQuestion.type === 'multi' && (
+              <span className="ask-modal__hint type-small-body-14">
+                {' '}(select all that apply)
+              </span>
+            )}
           </motion.h2>
         </AnimatePresence>
         <span className="type-small-body-14 ask-modal__count">

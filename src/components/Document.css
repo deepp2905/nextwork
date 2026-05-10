@@ -29,7 +29,7 @@
   padding: 24px 28px;
   background: var(--color-white);
   border: 1px solid var(--color-gainsboro);
-  border-radius: 16px;
+  border-radius: 24px;
 }
 
 .doc__overview h2 {
@@ -83,7 +83,7 @@
 .doc-image__frame {
   width: 100%;
   background: var(--color-linen);
-  border-radius: 12px;
+  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,7 +105,7 @@
   padding: 28px;
   background: var(--color-white);
   border: 1px solid var(--color-gainsboro);
-  border-radius: 16px;
+  border-radius: 24px;
 }
 
 .doc__footer h2 {

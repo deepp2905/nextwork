@@ -34,9 +34,8 @@ export default function Quiz() {
           const wrong = submitted && chosen && opt.id !== QUESTION.correct;
           return (
             <li key={opt.id}>
-              <motion.button
+              <button
                 type="button"
-                whileTap={submitted ? undefined : { scale: 0.98 }}
                 role="radio"
                 aria-checked={chosen}
                 className={[
@@ -63,7 +62,7 @@ export default function Quiz() {
                     <Cross />
                   </span>
                 )}
-              </motion.button>
+              </button>
             </li>
           );
         })}

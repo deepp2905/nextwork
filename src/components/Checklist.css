@@ -18,6 +18,10 @@
   transition: background-color 120ms ease;
 }
 
+.checklist__row:hover {
+  background: var(--color-gainsboro);
+}
+
 
 
 .checklist__box {

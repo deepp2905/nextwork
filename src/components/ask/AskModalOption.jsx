@@ -5,7 +5,6 @@ export default function AskModalOption({ label, isMulti, selected, onClick }) {
     <motion.button
       type="button"
       layout
-      whileTap={{ scale: 0.98 }}
       transition={{ layout: { duration: 0.4, ease: [0.32, 0.72, 0, 1] } }}
       className={`ask-modal__option type-small-body-14${
         selected ? ' ask-modal__option--selected' : ''
