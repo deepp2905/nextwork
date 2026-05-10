@@ -39,9 +39,12 @@ const TYPE_OPTIONS = [
   },
 ];
 
-function ColorSwatches({ value, onChange }) {
+function ColorSwatches({ value, onChange, onHover }) {
   return (
-    <div className="doc-theme-toolbar__group">
+    <div
+      className="doc-theme-toolbar__group"
+      onMouseLeave={() => onHover?.(null)}
+    >
       <span className="doc-theme-toolbar__label">Color</span>
       <div
         className="doc-theme-toolbar__swatches"
@@ -54,7 +57,7 @@ function ColorSwatches({ value, onChange }) {
             <Tooltip key={opt.key} label={opt.label} placement="bottom">
               <motion.button
                 type="button"
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.95 }}
                 role="radio"
                 aria-checked={active}
                 aria-label={opt.label}
@@ -62,6 +65,9 @@ function ColorSwatches({ value, onChange }) {
                 data-active={active ? 'true' : 'false'}
                 style={{ '--swatch-bg': opt.bg, '--swatch-primary': opt.primary }}
                 onClick={() => onChange(opt.key)}
+                onMouseEnter={() => onHover?.(opt.key)}
+                onFocus={() => onHover?.(opt.key)}
+                onBlur={() => onHover?.(null)}
               >
                 <span className="doc-swatch__dot" aria-hidden="true" />
               </motion.button>
@@ -73,9 +79,12 @@ function ColorSwatches({ value, onChange }) {
   );
 }
 
-function TypeSwatches({ value, onChange }) {
+function TypeSwatches({ value, onChange, onHover }) {
   return (
-    <div className="doc-theme-toolbar__group">
+    <div
+      className="doc-theme-toolbar__group"
+      onMouseLeave={() => onHover?.(null)}
+    >
       <span className="doc-theme-toolbar__label">Typography</span>
       <div
         className="doc-theme-toolbar__swatches"
@@ -88,7 +97,7 @@ function TypeSwatches({ value, onChange }) {
             <Tooltip key={opt.key} label={opt.label} placement="bottom">
               <motion.button
                 type="button"
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.95 }}
                 role="radio"
                 aria-checked={active}
                 aria-label={opt.label}
@@ -99,6 +108,9 @@ function TypeSwatches({ value, onChange }) {
                   '--swatch-weight': opt.fontWeight,
                 }}
                 onClick={() => onChange(opt.key)}
+                onMouseEnter={() => onHover?.(opt.key)}
+                onFocus={() => onHover?.(opt.key)}
+                onBlur={() => onHover?.(null)}
               >
                 <span className="doc-swatch__aa" aria-hidden="true">Aa</span>
               </motion.button>
@@ -115,11 +127,21 @@ export default function DocThemeToolbar({
   typeTheme,
   onColorChange,
   onTypeChange,
+  onColorHover,
+  onTypeHover,
 }) {
   return (
     <div className="doc-theme-toolbar">
-      <ColorSwatches value={colorTheme} onChange={onColorChange} />
-      <TypeSwatches value={typeTheme} onChange={onTypeChange} />
+      <ColorSwatches
+        value={colorTheme}
+        onChange={onColorChange}
+        onHover={onColorHover}
+      />
+      <TypeSwatches
+        value={typeTheme}
+        onChange={onTypeChange}
+        onHover={onTypeHover}
+      />
     </div>
   );
 }
