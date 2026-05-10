@@ -72,11 +72,15 @@ export default function AskModal({
         </span>
       </div>
 
+      <motion.div
+        layout
+        transition={{ layout: { duration: 0.3, ease: [0.32, 0.72, 0, 1] } }}
+        className="ask-modal__body-wrapper"
+      >
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentQuestion.id}
           custom={direction}
-          layout
           variants={{
             enter: (dir) => ({ opacity: 0, x: dir * 8 }),
             center: { opacity: 1, x: 0 },
@@ -85,7 +89,7 @@ export default function AskModal({
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.15, ease: 'easeOut', layout: { duration: 0.25, ease: [0.32, 0.72, 0, 1] } }}
+          transition={{ duration: 0.15, ease: 'easeOut' }}
           className="ask-modal__body"
         >
           <motion.div layout className="ask-modal__options">
@@ -123,6 +127,7 @@ export default function AskModal({
           </motion.div>
         </motion.div>
       </AnimatePresence>
+      </motion.div>
 
       <div className="ask-modal__footer">
         {stepIndex > 0 && (

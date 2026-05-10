@@ -52,6 +52,12 @@ export const ArrowUp = ({ size = 16, ...props }) => (
   </svg>
 );
 
+export const ChevronDown = ({ size = 16, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
+    <path d="M4 6.5 8 10.5l4-4" />
+  </svg>
+);
+
 export const Highlight = ({ size = 16, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
     <path d="m9 2.5 4.5 4.5-7 7H2.5V10l6.5-7.5Z" />

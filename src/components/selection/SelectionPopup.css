@@ -1,6 +1,5 @@
 .selection-popup {
   position: absolute;
-  transform: translate(-50%, calc(-100% - 8px));
   z-index: 30;
   display: inline-flex;
   align-items: center;
