@@ -7,11 +7,11 @@ import MenuBar from './components/MenuBar.jsx';
 import SelectionPopup from './components/selection/SelectionPopup.jsx';
 import './App.css';
 
-const ASK_MIN = 320;
+const ASK_MIN = 420;
 const ASK_MAX = 720;
 const ASK_DEFAULT = 500;
 
-const DOC_MIN = 320;
+const DOC_MIN = 480;
 const DOC_MAX = 1080;
 const DOC_DEFAULT = 720;
 
