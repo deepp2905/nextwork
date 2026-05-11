@@ -3,8 +3,7 @@
   max-width: 760px;
 }
 
-.doc-image,
-.doc-code {
+.doc-image {
   user-select: none;
 }
 
@@ -136,6 +135,7 @@
   padding: 8px 8px 8px 16px;
   background: var(--color-linen);
   border-bottom: 1px solid var(--color-gainsboro);
+  user-select: none;
 }
 
 .doc-code__lang {
@@ -177,6 +177,7 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: var(--text-14);
   line-height: 1.55;
+  user-select: text;
 }
 
 .doc-step__body .doc-code__code {
