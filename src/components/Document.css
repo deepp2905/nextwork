@@ -125,7 +125,6 @@
   background: var(--color-white);
   border: 1px solid var(--color-gainsboro);
   border-radius: 16px;
-  overflow: hidden;
 }
 
 .doc-code__header {
@@ -135,6 +134,7 @@
   padding: 8px 8px 8px 16px;
   background: var(--color-linen);
   border-bottom: 1px solid var(--color-gainsboro);
+  border-radius: 15px 15px 0 0;
   user-select: none;
 }
 
@@ -152,7 +152,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-stone-gray);
+  color: var(--color-dark-gray);
   background: transparent;
   transition: background-color 120ms ease, color 120ms ease;
 }
@@ -177,6 +177,7 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: var(--text-14);
   line-height: 1.55;
+  border-radius: 0 0 15px 15px;
   user-select: text;
 }
 
