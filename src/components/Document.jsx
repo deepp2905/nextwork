@@ -51,6 +51,7 @@ export default function Document() {
       <section className="doc__overview">
         <h2 className="type-h2" data-highlightable>What you&rsquo;ll do</h2>
         <Checklist
+          variant="white-smoke"
           items={[
             'Create an AWS account and set up billing alerts',
             'Push your React project to a Git repository',

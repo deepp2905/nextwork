@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Tooltip from './Tooltip';
 import './DocThemeToolbar.css';
@@ -116,16 +117,32 @@ export default function DocThemeToolbar({
   onColorChange,
   onTypeChange,
 }) {
+  const [entered, setEntered] = useState(false);
+
   return (
-    <div className="doc-theme-toolbar">
-      <ColorSwatches
-        value={colorTheme}
-        onChange={onColorChange}
-      />
-      <TypeSwatches
-        value={typeTheme}
-        onChange={onTypeChange}
-      />
-    </div>
+    <motion.div
+      className="doc-theme-toolbar-shell"
+      data-entered={entered ? 'true' : 'false'}
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: 'auto', opacity: 1 }}
+      transition={{ duration: 0.3, ease: 'easeOut', delay: 0.6 }}
+      onAnimationComplete={() => setEntered(true)}
+    >
+      <motion.div
+        className="doc-theme-toolbar"
+        initial={{ y: '-100%' }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut', delay: 0.6 }}
+      >
+        <ColorSwatches
+          value={colorTheme}
+          onChange={onColorChange}
+        />
+        <TypeSwatches
+          value={typeTheme}
+          onChange={onTypeChange}
+        />
+      </motion.div>
+    </motion.div>
   );
 }

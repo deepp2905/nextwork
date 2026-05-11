@@ -1,3 +1,11 @@
+.doc-theme-toolbar-shell {
+  overflow: hidden;
+}
+
+.doc-theme-toolbar-shell[data-entered='true'] {
+  overflow: visible;
+}
+
 .doc-theme-toolbar {
   position: sticky;
   top: 0;

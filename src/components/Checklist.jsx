@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './Checklist.css';
 
-export default function Checklist({ items }) {
+export default function Checklist({ items, variant = 'linen' }) {
   const [checked, setChecked] = useState(() => new Set());
 
   const toggle = (i) => {
@@ -14,7 +14,7 @@ export default function Checklist({ items }) {
   };
 
   return (
-    <ul className="checklist">
+    <ul className={`checklist checklist--${variant}`}>
       {items.map((item, i) => {
         const isChecked = checked.has(i);
         return (

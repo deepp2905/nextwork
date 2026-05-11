@@ -78,6 +78,15 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!activeTab) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveTab(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [activeTab]);
+
   const anyResizing = isResizing || isDocResizing;
 
   return (

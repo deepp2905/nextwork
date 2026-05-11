@@ -19,8 +19,12 @@
   transition: background-color 120ms ease;
 }
 
-.checklist__row:hover {
+.checklist--linen .checklist__row:hover {
   background: var(--color-linen);
+}
+
+.checklist--white-smoke .checklist__row:hover {
+  background: var(--color-white-smoke);
 }
 
 
