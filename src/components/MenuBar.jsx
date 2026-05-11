@@ -25,7 +25,7 @@ export default function MenuBar({ activeTab, onSelect }) {
                 label={tooltipLabel}
                 placement="top"
                 gap={16}
-                disabled={isActive}
+                disabled={!!activeTab}
               >
                 <motion.button
                   type="button"
