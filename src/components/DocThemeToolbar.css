@@ -1,20 +1,11 @@
-.doc-theme-toolbar-shell {
-  overflow: hidden;
-}
-
-.doc-theme-toolbar-shell[data-entered='true'] {
-  overflow: visible;
-}
-
 .doc-theme-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
   display: flex;
   flex-wrap: wrap;
   gap: 24px 48px;
   padding: 16px 16px 24px 16px;
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-linen);
   font-family: var(--font-sans);
 }

@@ -79,9 +79,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!activeTab) return;
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') setActiveTab(null);
+      if (e.key === 'Escape' && activeTab) {
+        setActiveTab(null);
+        return;
+      }
+      const mod = e.metaKey || e.ctrlKey;
+      if (!mod || e.altKey || e.shiftKey) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setActiveTab((prev) => (prev === 'ask' ? null : 'ask'));
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setActiveTab((prev) => (prev === 'documentation' ? null : 'documentation'));
+      }
     };
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
