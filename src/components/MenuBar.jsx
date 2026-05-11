@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkle, Folder, BookOpen } from './icons/Icons';
 import Tooltip from './Tooltip';
@@ -11,6 +12,35 @@ const TABS = [
   { id: 'projects', label: 'Projects', Icon: Folder, shortcut: null },
   { id: 'documentation', label: 'Documentation', Icon: BookOpen, shortcut: `${modKey} + ›` },
 ];
+
+function MenuTab({ id, label, Icon, isActive, onSelect }) {
+  const [pressed, setPressed] = useState(false);
+
+  const press = () => setPressed(true);
+  const release = () => setPressed(false);
+
+  return (
+    <button
+      type="button"
+      className={`menu-bar__tab type-small-body${isActive ? ' menu-bar__tab--active' : ''}`}
+      onClick={() => onSelect(id)}
+      onPointerDown={press}
+      onPointerUp={release}
+      onPointerLeave={release}
+      onPointerCancel={release}
+      aria-pressed={isActive}
+    >
+      <motion.span
+        className="menu-bar__tab-inner"
+        animate={{ scale: pressed ? 0.95 : 1 }}
+        transition={{ type: 'spring', stiffness: 600, damping: 30 }}
+      >
+        <Icon className="menu-bar__icon" />
+        <span>{label}</span>
+      </motion.span>
+    </button>
+  );
+}
 
 export default function MenuBar({ activeTab, onSelect }) {
   return (
@@ -27,16 +57,13 @@ export default function MenuBar({ activeTab, onSelect }) {
                 gap={16}
                 disabled={!!activeTab}
               >
-                <motion.button
-                  type="button"
-                  whileTap={{ scale: 0.95 }}
-                  className={`menu-bar__tab type-small-body${isActive ? ' menu-bar__tab--active' : ''}`}
-                  onClick={() => onSelect(id)}
-                  aria-pressed={isActive}
-                >
-                  <Icon className="menu-bar__icon" />
-                  <span>{label}</span>
-                </motion.button>
+                <MenuTab
+                  id={id}
+                  label={label}
+                  Icon={Icon}
+                  isActive={isActive}
+                  onSelect={onSelect}
+                />
               </Tooltip>
             </li>
           );
