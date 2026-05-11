@@ -1,29 +1,31 @@
 [data-doc-type-theme="technical"] {
-  --doc-font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
-  --doc-font-heading: 'Inter Tight', 'Inter', system-ui, sans-serif;
-  --doc-font-body: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --doc-font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --doc-font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --doc-font-body: 'Geist', 'Inter', system-ui, sans-serif;
 
-  --doc-h1-size: 36px;
+  --doc-h1-size: 40px;
   --doc-h1-weight: 700;
   --doc-h1-line: 1.1;
-  --doc-h1-tracking: -0.025em;
+  --doc-h1-tracking: -0.03em;
 
-  --doc-h2-size: 22px;
-  --doc-h2-weight: 600;
+  --doc-h2-size: 28px;
+  --doc-h2-weight: 700;
   --doc-h2-line: 1.3;
-  --doc-h2-tracking: -0.02em;
+  --doc-h2-tracking: -0.025em;
 
-  --doc-h3-size: 16px;
-  --doc-h3-weight: 600;
+  --doc-h3-size: 20px;
+  --doc-h3-weight: 700;
+  --doc-h3-tracking: -0.015em;
 
   --doc-body-size: 15px;
   --doc-body-weight: 400;
-  --doc-body-line: 1.55;
+  --doc-body-line: 1.6;
 
   --doc-small-size: 13px;
   --doc-small-weight: 500;
+  --doc-body-line: 1.6;  
 
-  --doc-eyebrow-size: 11px;
-  --doc-eyebrow-weight: 600;
+  --doc-eyebrow-size: 12px;
+  --doc-eyebrow-weight: 800;
   --doc-eyebrow-tracking: 0.12em;
 }

@@ -8,8 +8,10 @@
   padding: 48px 40px 80px;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 128px;
   min-height: 100%;
+  max-width: 840px;
+  margin-inline: auto;
 }
 
 .doc-mock__hero {
@@ -87,6 +89,7 @@
   font-size: var(--doc-h2-size);
   font-weight: var(--doc-h2-weight);
   line-height: var(--doc-h2-line);
+  letter-spacing: var(--doc-h2-tracking);
   color: var(--doc-fg);
 }
 

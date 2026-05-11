@@ -23,7 +23,7 @@ export default function DocumentationMock() {
           data-key={section.key}
         >
           <span className="doc-mock__section-eyebrow">
-            {section.number} — {section.title}
+            {section.number} — {section.eyebrow}
           </span>
           <h2 className="doc-mock__section-title">{section.title}</h2>
           <p className="doc-mock__section-body">{section.body}</p>

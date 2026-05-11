@@ -17,25 +17,25 @@ const TYPE_OPTIONS = [
     key: 'modern',
     label: 'Modern',
     fontFamily: "'Inter', system-ui, sans-serif",
-    fontWeight: 700,
+    fontWeight: 800,
   },
   {
     key: 'display',
     label: 'Display',
     fontFamily: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif",
-    fontWeight: 700,
+    fontWeight: 800,
   },
   {
     key: 'editorial',
     label: 'Editorial',
     fontFamily: "'Fraunces', 'Playfair Display', Georgia, serif",
-    fontWeight: 600,
+    fontWeight: 800,
   },
   {
     key: 'technical',
     label: 'Technical',
-    fontFamily: "'Inter Tight', 'Inter', system-ui, sans-serif",
-    fontWeight: 700,
+    fontFamily: "'Space Grotesk', 'Inter', system-ui, sans-serif",
+    fontWeight: 800,
   },
 ];
 
