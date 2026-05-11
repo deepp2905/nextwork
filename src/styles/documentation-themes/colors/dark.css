@@ -1,0 +1,11 @@
+[data-doc-color-theme="dark"] {
+  --doc-bg: #0c0d10;
+  --doc-surface: #15171c;
+  --doc-fg: #f3f4f6;
+  --doc-muted: #9aa0aa;
+  --doc-eyebrow: #ee22ee;
+  --doc-primary: #ee22ee;
+  --doc-primary-contrast: #0c0d10;
+  --doc-border: #2a2d35;
+  --doc-image-bg: #1c1f26;
+}

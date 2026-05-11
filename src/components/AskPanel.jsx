@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import AskMessages from './ask/AskMessages.jsx';
 import AskComposer from './ask/AskComposer.jsx';
-import { Sparkle, Close } from './icons/Icons';
+import { Sparkle, Close, ArrowDownRight } from './icons/Icons';
 import { formatAnswer, pickRandomQuestions } from './ask/clarifyQuestions.js';
 import './AskPanel.css';
 
@@ -13,7 +13,7 @@ const SUGGESTIONS = [
       "Can you walk me through step 3 in more detail? I'd like to understand what each part does, why it's needed, and what could go wrong so I can troubleshoot if something breaks.",
   },
   {
-    label: "I'm stuck on AWS setup — help",
+    label: "I'm stuck on AWS setup",
     prompt:
       "I'm stuck on the AWS setup section. Here's where I am right now: [describe what you tried]. Can you help me figure out what to check next and the most likely thing I'm missing?",
   },
@@ -21,6 +21,11 @@ const SUGGESTIONS = [
     label: 'Quiz me on what I just read',
     prompt:
       'Quiz me on the material I just read. Ask me 3–5 questions that test whether I actually understood the key concepts, and let me know after each answer whether I got it right and why.',
+  },
+  {
+    label: 'Summarize the project for me',
+    prompt:
+      'Give me a plain-English summary of what this tutorial is teaching. Skip the jargon and assume I just want the big picture: what we are building, why it matters, and the 3-4 key concepts I should walk away with.',
   },
 ];
 
@@ -219,7 +224,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
             <motion.button
               key={s.label}
               type="button"
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.98 }}
               className="ask-panel__chip type-small-body-14"
               onClick={() => {
                 setDraft(s.prompt);
@@ -227,7 +232,8 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
               }}
               disabled={thinking || modalOpen}
             >
-              {s.label}
+              <span className="ask-panel__chip-label">{s.label}</span>
+              <ArrowDownRight />
             </motion.button>
           ))}
         </div>

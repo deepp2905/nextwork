@@ -23,7 +23,7 @@
 .doc-panel__close {
   width: 32px;
   height: 32px;
-  border-radius: 999px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -34,14 +34,16 @@
   background: var(--color-gainsboro);
 }
 
-.doc-panel__body {
+.doc-panel__themed {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--doc-bg);
+}
+
+.doc-panel__scroll {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 24px;
-}
-
-.doc-panel__placeholder {
-  color: var(--color-dark-gray);
-  margin: 0;
 }

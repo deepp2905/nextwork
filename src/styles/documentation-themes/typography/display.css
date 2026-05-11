@@ -1,0 +1,30 @@
+[data-doc-type-theme="display"] {
+  --doc-font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --doc-font-heading: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --doc-font-body: 'Geist', 'Inter', system-ui, sans-serif;
+
+  --doc-h1-size: 52px;
+  --doc-h1-weight: 800;
+  --doc-h1-line: 1.02;
+  --doc-h1-tracking: -0.04em;
+
+  --doc-h2-size: 28px;
+  --doc-h2-weight: 700;
+  --doc-h2-line: 1.2;
+  --doc-h2-tracking: -0.025em;
+
+  --doc-h3-size: 17px;
+  --doc-h3-weight: 600;
+  --doc-h3-tracking: -0.015em;
+
+  --doc-body-size: 16px;
+  --doc-body-weight: 400;
+  --doc-body-line: 1.6;
+
+  --doc-small-size: 14px;
+  --doc-small-weight: 500;
+
+  --doc-eyebrow-size: 12px;
+  --doc-eyebrow-weight: 700;
+  --doc-eyebrow-tracking: 0.14em;
+}

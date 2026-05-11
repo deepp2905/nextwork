@@ -24,7 +24,7 @@
 .ask-panel__close {
   width: 32px;
   height: 32px;
-  border-radius: 999px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -423,7 +423,10 @@
 }
 
 .ask-panel__chip {
-  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px 8px 12px;
   border-radius: 999px;
   background: var(--color-white);
   border: 1px solid var(--color-gainsboro);
@@ -431,9 +434,13 @@
   transition: background-color 120ms ease;
 }
 
+.ask-panel__chip svg {
+  color: var(--color-stone-gray);
+  flex-shrink: 0;
+}
+
 .ask-panel__chip:hover {
   background: var(--color-white-smoke);
-  border: 1px solid var(--color-stone-gray);
 }
 
 .ask-panel__input-row {

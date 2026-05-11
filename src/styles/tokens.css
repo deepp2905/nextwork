@@ -15,7 +15,7 @@
   --color-error: #d97c6e;
 
   /* Typography – raw */
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Geist', 'Inter', system-ui, sans-serif;
   --text-12: 12px;
   --text-14: 14px;
   --text-16: 16px;
@@ -31,12 +31,12 @@
   font-size: var(--text-36);
   font-weight: 800;
   line-height: 1.11;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 .type-h1-24 {
   font-family: var(--font-sans);
   font-size: var(--text-24);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.33;
   letter-spacing: -0.02em;
 }

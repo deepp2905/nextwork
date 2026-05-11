@@ -52,6 +52,13 @@ export const ArrowUp = ({ size = 16, ...props }) => (
   </svg>
 );
 
+export const ArrowDownRight = ({ size = 16, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
+    <path d="M4.5 4.5 12 12" />
+    <path d="M12 5V12H5" />
+  </svg>
+);
+
 export const ChevronDown = ({ size = 16, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" {...baseProps} {...props}>
     <path d="M4 6.5 8 10.5l4-4" />

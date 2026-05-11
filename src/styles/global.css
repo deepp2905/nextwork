@@ -26,6 +26,11 @@ button {
   background: none;
   color: inherit;
   padding: 0;
+  user-select: none;
+}
+
+[role='tooltip'] {
+  user-select: none;
 }
 
 input,

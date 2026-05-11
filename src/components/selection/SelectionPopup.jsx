@@ -151,6 +151,7 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
   const [popup, setPopup] = useState(null);
   const [hovered, setHovered] = useState(null);
   const isDraggingRef = useRef(false);
+  const lockedRef = useRef(false);
   const popupRef = useRef(null);
   const hoverTargetRef = useRef(null);
   const hideTimerRef = useRef(null);
@@ -160,6 +161,7 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
     if (!article) return;
 
     const evaluateSelection = () => {
+      if (lockedRef.current) return;
       const sel = window.getSelection();
       if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
         if (popupRef.current?.mode !== 'highlight') setPopup(null);
@@ -193,6 +195,7 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
     const onMouseDown = (e) => {
       if (e.target.closest('.selection-popup')) return;
       if (e.target.closest(`.${HIGHLIGHT_CLASS}`)) return;
+      lockedRef.current = false;
       isDraggingRef.current = true;
       setPopup(null);
     };
@@ -290,15 +293,28 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
 
   const handleAsk = () => {
     if (!popup) return;
+    lockedRef.current = true;
     onAsk(popup.text);
   };
 
   const handleHighlight = () => {
     const sel = window.getSelection();
     if (!sel || sel.rangeCount === 0) return;
-    wrapRange(sel.getRangeAt(0));
-    setPopup(null);
+    const range = sel.getRangeAt(0);
+    const text = sel.toString();
+    const fullRect = range.getBoundingClientRect();
+    const firstRect = range.getClientRects()[0];
+    wrapRange(range);
     sel.removeAllRanges();
+    const firstMark = document.querySelector(`.${HIGHLIGHT_CLASS}[data-highlight-group="${highlightGroupCounter}"]`);
+    if (firstMark) hoverTargetRef.current = firstMark;
+    lockedRef.current = true;
+    setPopup({
+      mode: 'highlight',
+      text,
+      top: (firstRect ?? fullRect).top + window.scrollY,
+      left: fullRect.left + fullRect.width / 2 + window.scrollX,
+    });
   };
 
   const handleRemoveHighlight = () => {

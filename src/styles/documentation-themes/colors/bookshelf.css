@@ -1,0 +1,11 @@
+[data-doc-color-theme="bookshelf"] {
+  --doc-bg: #fdf9f1;
+  --doc-surface: #f7efdc;
+  --doc-fg: #2a2520;
+  --doc-muted: #8a7d68;
+  --doc-eyebrow: #3d6b4a;
+  --doc-primary: #3d6b4a;
+  --doc-primary-contrast: #fdf9f1;
+  --doc-border: #e0d4b8;
+  --doc-image-bg: #f1ead8;
+}
