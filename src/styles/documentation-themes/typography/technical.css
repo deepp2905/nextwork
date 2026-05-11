@@ -3,10 +3,10 @@
   --doc-font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   --doc-font-body: 'Geist', 'Inter', system-ui, sans-serif;
 
-  --doc-h1-size: 40px;
+  --doc-h1-size: 52px;
   --doc-h1-weight: 700;
   --doc-h1-line: 1.1;
-  --doc-h1-tracking: -0.03em;
+  --doc-h1-tracking: -0.04em;
 
   --doc-h2-size: 28px;
   --doc-h2-weight: 700;

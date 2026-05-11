@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 128px;
   min-height: 100%;
-  max-width: 840px;
+  max-width: 640px;
   margin-inline: auto;
 }
 

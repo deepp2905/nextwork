@@ -3,7 +3,7 @@ import Tooltip from './Tooltip';
 import './DocThemeToolbar.css';
 
 const COLOR_OPTIONS = [
-  { key: 'light', label: 'Light', bg: '#ffffff', primary: '#0f9d8a' },
+  { key: 'light', label: 'Light', bg: '#ffffff', primary: '#1b1b1b' },
   { key: 'bold-accent', label: 'Bold Accent', bg: '#ffffff', primary: '#7c3aed' },
   { key: 'marigold', label: 'Marigold', bg: '#fffbf2', primary: '#e8703a' },
   { key: 'bookshelf', label: 'Bookshelf', bg: '#fdf9f1', primary: '#3d6b4a' },

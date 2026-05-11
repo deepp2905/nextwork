@@ -147,6 +147,34 @@ const unwrapHighlightGroup = (mark) => {
   all.forEach(unwrapMark);
 };
 
+// Returns the cumulative text-character offset of a node within `root`,
+// counting only text inside `root`. Used to convert element-based positions
+// to character offsets that survive DOM mutations like normalize().
+const textOffsetOf = (root, targetNode, targetOffset) => {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let total = 0;
+  let n;
+  while ((n = walker.nextNode())) {
+    if (n === targetNode) return total + targetOffset;
+    total += n.nodeValue.length;
+  }
+  return total;
+};
+
+// Inverse of textOffsetOf: convert a character offset within `root` back
+// into a (textNode, offset) pair after the DOM may have been mutated.
+const rangePointAtOffset = (root, charOffset) => {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let remaining = charOffset;
+  let n;
+  while ((n = walker.nextNode())) {
+    const len = n.nodeValue.length;
+    if (remaining <= len) return { node: n, offset: remaining };
+    remaining -= len;
+  }
+  return null;
+};
+
 export default function SelectionPopup({ articleSelector, onAsk }) {
   const [popup, setPopup] = useState(null);
   const [hovered, setHovered] = useState(null);
@@ -155,6 +183,9 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
   const popupRef = useRef(null);
   const hoverTargetRef = useRef(null);
   const hideTimerRef = useRef(null);
+  const popupElRef = useRef(null);
+  const triangleRef = useRef(null);
+  const lastMouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const article = document.querySelector(articleSelector);
@@ -219,6 +250,47 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
       }
     };
 
+    // Build a triangle from the cursor's current position to the popup's
+    // top-left and top-right corners. While the cursor is inside this triangle
+    // we treat the user as "in transit" toward the popup and suppress hide /
+    // suppress reposition to other highlights. Triangle expires on a timer so
+    // a stationary cursor doesn't trap the popup forever.
+    const buildTriangle = () => {
+      const popEl = popupElRef.current;
+      if (!popEl) {
+        triangleRef.current = null;
+        return;
+      }
+      const rect = popEl.getBoundingClientRect();
+      triangleRef.current = {
+        cursor: { x: lastMouseRef.current.x, y: lastMouseRef.current.y },
+        topLeft: { x: rect.left, y: rect.bottom },
+        topRight: { x: rect.right, y: rect.bottom },
+        expiresAt: performance.now() + 400,
+      };
+    };
+
+    const pointInTriangle = (p, a, b, c) => {
+      const sign = (p1, p2, p3) =>
+        (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+      const d1 = sign(p, a, b);
+      const d2 = sign(p, b, c);
+      const d3 = sign(p, c, a);
+      const hasNeg = d1 < 0 || d2 < 0 || d3 < 0;
+      const hasPos = d1 > 0 || d2 > 0 || d3 > 0;
+      return !(hasNeg && hasPos);
+    };
+
+    const inHoverTriangle = (x, y) => {
+      const t = triangleRef.current;
+      if (!t) return false;
+      if (performance.now() > t.expiresAt) {
+        triangleRef.current = null;
+        return false;
+      }
+      return pointInTriangle({ x, y }, t.cursor, t.topLeft, t.topRight);
+    };
+
     const showHighlightPopup = (mark) => {
       clearHideTimer();
       hoverTargetRef.current = mark;
@@ -240,6 +312,7 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
         top: rect.top + window.scrollY,
         left: rect.left + rect.width / 2 + window.scrollX,
       });
+      requestAnimationFrame(buildTriangle);
     };
 
     const scheduleHide = () => {
@@ -262,27 +335,52 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
           clearHideTimer();
           return;
         }
+        // If the cursor is mid-traverse toward the existing popup, don't
+        // swap the popup to the new highlight underneath the cursor.
+        if (
+          popupRef.current?.mode === 'highlight' &&
+          inHoverTriangle(lastMouseRef.current.x, lastMouseRef.current.y)
+        ) {
+          clearHideTimer();
+          return;
+        }
         showHighlightPopup(mark);
         return;
       }
       const inPopup = e.target.closest('.selection-popup');
       if (inPopup) {
         clearHideTimer();
+        triangleRef.current = null;
+        return;
+      }
+      // Cursor is over neither a highlight nor the popup. If it's still inside
+      // the hover triangle, treat it as transit and don't hide.
+      if (
+        popupRef.current?.mode === 'highlight' &&
+        inHoverTriangle(lastMouseRef.current.x, lastMouseRef.current.y)
+      ) {
+        clearHideTimer();
         return;
       }
       if (popupRef.current?.mode === 'highlight') scheduleHide();
+    };
+
+    const onMouseMove = (e) => {
+      lastMouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mouseup', onMouseUp);
     document.addEventListener('selectionchange', onSelectionChange);
     document.addEventListener('mouseover', onMouseOver);
+    document.addEventListener('mousemove', onMouseMove);
     window.addEventListener('scroll', onScroll, true);
     return () => {
       document.removeEventListener('mousedown', onMouseDown);
       document.removeEventListener('mouseup', onMouseUp);
       document.removeEventListener('selectionchange', onSelectionChange);
       document.removeEventListener('mouseover', onMouseOver);
+      document.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('scroll', onScroll, true);
       clearHideTimer();
     };
@@ -319,9 +417,63 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
 
   const handleRemoveHighlight = () => {
     const mark = hoverTargetRef.current;
-    if (mark) unwrapHighlightGroup(mark);
+    if (!mark) {
+      lockedRef.current = true;
+      setPopup((prev) => (prev ? { ...prev, mode: 'selection' } : prev));
+      return;
+    }
+
+    // Find every mark in the group so we can span the full original selection,
+    // and pick a stable common ancestor that will survive normalize().
+    const groupId = mark.dataset?.highlightGroup;
+    const groupMarks = groupId
+      ? Array.from(
+          document.querySelectorAll(
+            `.${HIGHLIGHT_CLASS}[data-highlight-group="${groupId}"]`,
+          ),
+        )
+      : [mark];
+    const firstMark = groupMarks[0];
+    const lastMark = groupMarks[groupMarks.length - 1];
+
+    // Find a common ancestor that contains every mark in the group.
+    let ancestor = firstMark.parentElement;
+    while (ancestor && !groupMarks.every((m) => ancestor.contains(m))) {
+      ancestor = ancestor.parentElement;
+    }
+    if (!ancestor) ancestor = document.body;
+
+    // Capture the character-offset range BEFORE unwrapping, using the first
+    // text node of the first mark and the last text node of the last mark
+    // as boundary anchors.
+    const startTextNode = firstTextNode(firstMark);
+    const endTextNode = lastTextNode(lastMark);
+    let startOffset = null;
+    let endOffset = null;
+    if (startTextNode && endTextNode) {
+      startOffset = textOffsetOf(ancestor, startTextNode, 0);
+      endOffset = textOffsetOf(ancestor, endTextNode, endTextNode.nodeValue.length);
+    }
+
+    unwrapHighlightGroup(mark);
     hoverTargetRef.current = null;
-    setPopup(null);
+
+    // Restore the selection over the unwrapped text so the user can re-act on it.
+    if (startOffset != null && endOffset != null) {
+      const startPoint = rangePointAtOffset(ancestor, startOffset);
+      const endPoint = rangePointAtOffset(ancestor, endOffset);
+      if (startPoint && endPoint) {
+        const sel = window.getSelection();
+        const range = document.createRange();
+        range.setStart(startPoint.node, startPoint.offset);
+        range.setEnd(endPoint.node, endPoint.offset);
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      }
+    }
+
+    lockedRef.current = true;
+    setPopup((prev) => (prev ? { ...prev, mode: 'selection' } : prev));
   };
 
   const isHighlightMode = popup?.mode === 'highlight';
@@ -330,6 +482,7 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
     <AnimatePresence>
       {popup && (
         <motion.div
+          ref={popupElRef}
           className="selection-popup"
           style={{ top: popup.top, left: popup.left }}
           initial={{ opacity: 0, y: -120, scale: 0.96 }}
