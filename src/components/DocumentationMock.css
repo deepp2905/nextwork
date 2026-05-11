@@ -124,6 +124,28 @@
   border: 2px solid var(--doc-border);
 }
 
+.doc-editable {
+  border-radius: 6px;
+  margin: -2px -6px;
+  padding: 2px 6px;
+  cursor: text;
+  transition: background-color 120ms ease;
+}
+
+.doc-editable:hover {
+  background: color-mix(in srgb, currentColor 6%, transparent);
+}
+
+.doc-editable:focus {
+  outline: none;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.doc-editable:focus-visible {
+  outline: 2px solid color-mix(in srgb, currentColor 40%, transparent);
+  outline-offset: 2px;
+}
+
 @media (max-width: 640px) {
   .doc-mock {
     padding: 32px 24px 64px;
