@@ -129,28 +129,26 @@ export default function DocThemeToolbar({
 
   return (
     <div className="doc-theme-toolbar">
-      <ColorSwatches
-        value={colorTheme}
-        onChange={onColorChange}
-      />
-      <TypeSwatches
-        value={typeTheme}
-        onChange={onTypeChange}
-      />
-      <div className="doc-theme-toolbar__group">
-        <span className="doc-theme-toolbar__label">Randomize</span>
-        <Tooltip label="Randomize theme" placement="bottom">
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.95 }}
-            className="doc-swatch doc-swatch--randomize"
-            onClick={randomize}
-            aria-label="Randomize theme"
-          >
-            <Cube />
-          </motion.button>
-        </Tooltip>
+      <div className="doc-theme-toolbar__groups">
+        <ColorSwatches
+          value={colorTheme}
+          onChange={onColorChange}
+        />
+        <TypeSwatches
+          value={typeTheme}
+          onChange={onTypeChange}
+        />
       </div>
+        <motion.button
+          type="button"
+          whileTap={{ scale: 0.95 }}
+          className="doc-swatch doc-swatch--randomize"
+          onClick={randomize}
+          aria-label="Randomize theme"
+        >
+          <Cube />
+          Randomize
+        </motion.button>
     </div>
   );
 }

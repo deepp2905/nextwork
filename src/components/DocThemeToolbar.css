@@ -1,11 +1,19 @@
 .doc-theme-toolbar {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px 48px;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
   padding: 16px 16px 24px 16px;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-linen);
   font-family: var(--font-sans);
+}
+
+.doc-theme-toolbar__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 48px;
 }
 
 .doc-theme-toolbar__group {
@@ -78,8 +86,14 @@
 }
 
 .doc-swatch--randomize {
+  width: auto;
+  height: 39px;
+  padding: 0 14px;
+  gap: 8px;
   background: var(--color-white);
   color: var(--color-dark-gray);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .doc-swatch__aa {
