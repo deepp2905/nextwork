@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Tooltip from './Tooltip';
+import { Cube } from './icons/Icons';
 import './DocThemeToolbar.css';
 
 const COLOR_OPTIONS = [
@@ -116,6 +117,16 @@ export default function DocThemeToolbar({
   onColorChange,
   onTypeChange,
 }) {
+  const randomize = () => {
+    const pickDifferent = (list, current) => {
+      const others = list.filter((o) => o.key !== current);
+      const pool = others.length > 0 ? others : list;
+      return pool[Math.floor(Math.random() * pool.length)].key;
+    };
+    onColorChange(pickDifferent(COLOR_OPTIONS, colorTheme));
+    onTypeChange(pickDifferent(TYPE_OPTIONS, typeTheme));
+  };
+
   return (
     <div className="doc-theme-toolbar">
       <ColorSwatches
@@ -126,6 +137,20 @@ export default function DocThemeToolbar({
         value={typeTheme}
         onChange={onTypeChange}
       />
+      <div className="doc-theme-toolbar__group">
+        <span className="doc-theme-toolbar__label">Randomize</span>
+        <Tooltip label="Randomize theme" placement="bottom">
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.95 }}
+            className="doc-swatch doc-swatch--randomize"
+            onClick={randomize}
+            aria-label="Randomize theme"
+          >
+            <Cube />
+          </motion.button>
+        </Tooltip>
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import './DocumentationPanel.css';
 export default function DocumentationPanel({ onClose }) {
   const [colorTheme, setColorTheme] = useState('light');
   const [typeTheme, setTypeTheme] = useState('modern');
-  const [toolbarOpen, setToolbarOpen] = useState(false);
+  const [toolbarOpen, setToolbarOpen] = useState(true);
 
   return (
     <aside

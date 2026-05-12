@@ -77,6 +77,11 @@
   background: var(--color-white);
 }
 
+.doc-swatch--randomize {
+  background: var(--color-white);
+  color: var(--color-dark-gray);
+}
+
 .doc-swatch__aa {
   font-family: var(--swatch-font, var(--font-sans));
   font-weight: var(--swatch-weight, 600);

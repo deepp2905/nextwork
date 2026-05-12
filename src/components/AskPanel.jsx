@@ -117,11 +117,17 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         {
           from: 'assistant',
           text: 'For more context, please answer the following questions:',
+          openModalAfter: true,
         },
       ]);
       setThinking(false);
-      setModalOpen(true);
     }, aiDelay());
+  };
+
+  const handleMessageComplete = (msg) => {
+    if (msg?.openModalAfter) {
+      setModalOpen(true);
+    }
   };
 
   const onSubmitInput = (e) => {
@@ -214,8 +220,10 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
       <AskMessages
         messages={messages}
         thinking={thinking}
+        modalOpen={modalOpen}
         centered={!hasUserMessage && !thinking && !modalOpen}
         leading={!hasUserMessage ? <WelcomeBubble /> : null}
+        onMessageComplete={handleMessageComplete}
       />
 
       {!hasUserMessage && !modalOpen && (

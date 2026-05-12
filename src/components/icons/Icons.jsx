@@ -98,6 +98,14 @@ export const Pin = ({ size = 24, ...props }) => (
   </svg>
 );
 
+export const Cube = ({ size = 18, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...baseProps} strokeWidth={1.75} {...props}>
+    <path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z" />
+    <path d="M3 7l9 4.5L21 7" />
+    <path d="M12 11.5V21.5" />
+  </svg>
+);
+
 export const Expand = ({ size = 24, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" {...baseProps} strokeWidth={2} {...props}>
     <path d="m14 10 7-7m0 0h-6m6 0v6m-11 5-7 7m0 0h6m-6 0v-6" />

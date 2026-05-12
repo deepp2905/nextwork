@@ -477,6 +477,8 @@
 
 .ask-panel__input::placeholder {
   color: var(--color-stone-gray);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .ask-panel__send {

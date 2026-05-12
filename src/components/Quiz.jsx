@@ -19,8 +19,19 @@ const QUESTION = {
 export default function Quiz() {
   const [selected, setSelected] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [checking, setChecking] = useState(false);
 
   const isCorrect = submitted && selected === QUESTION.correct;
+
+  const handleCheck = () => {
+    if (selected == null || checking) return;
+    setChecking(true);
+    const delay = 1000 + Math.random() * 1000;
+    setTimeout(() => {
+      setChecking(false);
+      setSubmitted(true);
+    }, delay);
+  };
 
   return (
     <section className="quiz">
@@ -47,8 +58,8 @@ export default function Quiz() {
                 ]
                   .filter(Boolean)
                   .join(' ')}
-                onClick={() => !submitted && setSelected(opt.id)}
-                disabled={submitted}
+                onClick={() => !submitted && !checking && setSelected(opt.id)}
+                disabled={submitted || checking}
               >
                 <span className="quiz__option-radio" aria-hidden="true" />
                 <span className="quiz__option-label">{opt.label}</span>
@@ -68,39 +79,47 @@ export default function Quiz() {
         })}
       </ul>
 
-      {!submitted ? (
+      <motion.div
+        className={[
+          'quiz__feedback',
+          submitted && (isCorrect ? 'quiz__feedback--correct' : 'quiz__feedback--wrong'),
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        data-revealed={submitted ? 'true' : 'false'}
+        initial={false}
+      >
+        <p className="quiz__feedback-text type-body" aria-hidden={!submitted}>
+          <strong>{isCorrect ? 'Correct.' : 'Not quite.'}</strong>{' '}
+          {QUESTION.explanation}
+        </p>
         <motion.button
           type="button"
-          whileTap={selected == null ? undefined : { scale: 0.95 }}
-          className="quiz__submit type-small-body"
-          onClick={() => setSubmitted(true)}
-          disabled={selected == null}
+          whileTap={
+            submitted || (selected != null && !checking)
+              ? { scale: 0.95 }
+              : undefined
+          }
+          className={`quiz__submit type-small-body${submitted ? ' quiz__submit--outline' : ''}`}
+          onClick={
+            submitted
+              ? () => {
+                  setSelected(null);
+                  setSubmitted(false);
+                }
+              : handleCheck
+          }
+          disabled={!submitted && (selected == null || checking)}
         >
-          Check answer
+          {checking ? (
+            <span className="quiz__spinner" aria-label="Checking answer" />
+          ) : submitted ? (
+            'Try again'
+          ) : (
+            'Check answer'
+          )}
         </motion.button>
-      ) : (
-        <div
-          className={`quiz__feedback ${
-            isCorrect ? 'quiz__feedback--correct' : 'quiz__feedback--wrong'
-          }`}
-        >
-          <p className="quiz__feedback-text type-body">
-            <strong>{isCorrect ? 'Correct.' : 'Not quite.'}</strong>{' '}
-            {QUESTION.explanation}
-          </p>
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.95 }}
-            className="quiz__retry type-small-body-14"
-            onClick={() => {
-              setSelected(null);
-              setSubmitted(false);
-            }}
-          >
-            Try again
-          </motion.button>
-        </div>
-      )}
+      </motion.div>
     </section>
   );
 }
