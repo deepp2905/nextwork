@@ -43,9 +43,9 @@ export default function StreamedText({ text, onProgress, onDone }) {
         ) : (
           <motion.span
             key={i}
-            initial={{ opacity: 0, filter: 'blur(2px)' }}
+            initial={{ opacity: 0, filter: 'blur(1px)' }}
             animate={{ opacity: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
             style={{ display: 'inline-block' }}
           >
             {tok}
