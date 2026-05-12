@@ -206,6 +206,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
   return (
     <aside className="ask-panel" aria-label="Ask">
       <header className="ask-panel__header">
+        <span className='ask-panel__title type-h3'>Ask</span>
         <motion.button
           type="button"
           whileTap={{ scale: 0.95 }}

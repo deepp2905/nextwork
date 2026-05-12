@@ -16,13 +16,14 @@
   z-index: 3;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 16px;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-linen);  
 }
 
 .ask-panel__title {
+  color: var(--color-dark-gray);
   display: inline-flex;
   align-items: center;
   gap: 4px;
