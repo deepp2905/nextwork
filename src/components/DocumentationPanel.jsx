@@ -34,15 +34,17 @@ export default function DocumentationPanel({ onClose }) {
               <Pin size={18} />
             </motion.button>
           </Tooltip>
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.95 }}
-            className="doc-panel__icon-btn"
-            onClick={onClose}
-            aria-label="Close Documentation panel"
-          >
-            <Close />
-          </motion.button>
+          <Tooltip label="Close" placement="bottom">
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.95 }}
+              className="doc-panel__icon-btn"
+              onClick={onClose}
+              aria-label="Close Documentation panel"
+            >
+              <Close />
+            </motion.button>
+          </Tooltip>
         </div>
       </header>
       <AnimatePresence initial={false}>

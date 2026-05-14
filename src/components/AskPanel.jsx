@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import AskMessages from './ask/AskMessages.jsx';
 import AskComposer from './ask/AskComposer.jsx';
+import Tooltip from './Tooltip';
 import { Sparkle, Close, ArrowDownRight } from './icons/Icons';
 import { formatAnswer, pickRandomQuestions } from './ask/clarifyQuestions.js';
 import './AskPanel.css';
@@ -207,15 +208,17 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
     <aside className="ask-panel" aria-label="Ask">
       <header className="ask-panel__header">
         <span className='ask-panel__title type-h3'>Ask</span>
-        <motion.button
-          type="button"
-          whileTap={{ scale: 0.95 }}
-          className="ask-panel__close"
-          onClick={onClose}
-          aria-label="Close Ask panel"
-        >
-          <Close />
-        </motion.button>
+        <Tooltip label="Close" placement="bottom">
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.95 }}
+            className="ask-panel__close"
+            onClick={onClose}
+            aria-label="Close Ask panel"
+          >
+            <Close />
+          </motion.button>
+        </Tooltip>
       </header>
 
       <AskMessages
@@ -227,7 +230,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         onMessageComplete={handleMessageComplete}
       />
 
-      {!hasUserMessage && !modalOpen && (
+      {!hasUserMessage && !modalOpen && !pendingQuote && (
         <div className="ask-panel__suggestions">
           {SUGGESTIONS.map((s) => (
             <motion.button

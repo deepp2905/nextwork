@@ -5,6 +5,11 @@ import './SelectionPopup.css';
 
 const HIGHLIGHT_CLASS = 'doc__highlight';
 
+// Shared transition for the highlight ↔ remove-highlight swap so the
+// container's layout/width, the divider's nudge, and the button's
+// enter/exit blur all animate in lockstep.
+const SWAP_TRANSITION = { duration: 0.08, ease: 'easeOut' };
+
 const firstTextNode = (root) => {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   return walker.nextNode();
@@ -483,17 +488,24 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
       {popup && (
         <motion.div
           ref={popupElRef}
+          layout
           className="selection-popup"
           style={{ top: popup.top, left: popup.left }}
           initial={{ opacity: 0, y: -120, scale: 0.96 }}
           animate={{ opacity: 1, y: -60, scale: 1 }}
           exit={{ opacity: 0, y: -120, scale: 0.96, transition: { duration: 0.08, ease: 'easeIn' } }}
-          transition={{ duration: 0.12, ease: 'easeOut' }}
+          transition={{
+            duration: 0.18,
+            ease: 'easeOut',
+            layout: SWAP_TRANSITION,
+          }}
           onMouseDown={(e) => e.preventDefault()}
         >
           <motion.button
+            layout
             type="button"
             whileTap={{ scale: 0.95 }}
+            transition={{ layout: SWAP_TRANSITION }}
             className="selection-popup__btn type-small-body-14"
             onClick={handleAsk}
             onMouseEnter={() => setHovered('ask')}
@@ -502,35 +514,51 @@ export default function SelectionPopup({ articleSelector, onAsk }) {
             <Sparkle />
             Ask
           </motion.button>
-          <span
+          <motion.span
+            layout
+            transition={{ layout: SWAP_TRANSITION }}
             className={`selection-popup__divider${hovered ? ' selection-popup__divider--hidden' : ''}`}
             aria-hidden="true"
           />
-          {isHighlightMode ? (
-            <motion.button
-              type="button"
-              whileTap={{ scale: 0.95 }}
-              className="selection-popup__btn type-small-body-14"
-              onClick={handleRemoveHighlight}
-              onMouseEnter={() => setHovered('remove')}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <Close />
-              Remove highlight
-            </motion.button>
-          ) : (
-            <motion.button
-              type="button"
-              whileTap={{ scale: 0.95 }}
-              className="selection-popup__btn type-small-body-14"
-              onClick={handleHighlight}
-              onMouseEnter={() => setHovered('highlight')}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <Highlight />
-              Highlight
-            </motion.button>
-          )}
+          <AnimatePresence mode="popLayout" initial={false}>
+            {isHighlightMode ? (
+              <motion.button
+                key="remove"
+                layout
+                type="button"
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, filter: 'blur(2px)' }}
+                animate={{ opacity: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, filter: 'blur(2px)' }}
+                transition={SWAP_TRANSITION}
+                className="selection-popup__btn type-small-body-14"
+                onClick={handleRemoveHighlight}
+                onMouseEnter={() => setHovered('remove')}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <Close />
+                Remove highlight
+              </motion.button>
+            ) : (
+              <motion.button
+                key="highlight"
+                layout
+                type="button"
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, filter: 'blur(2px)' }}
+                animate={{ opacity: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, filter: 'blur(2px)' }}
+                transition={SWAP_TRANSITION}
+                className="selection-popup__btn type-small-body-14"
+                onClick={handleHighlight}
+                onMouseEnter={() => setHovered('highlight')}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <Highlight />
+                Highlight
+              </motion.button>
+            )}
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
