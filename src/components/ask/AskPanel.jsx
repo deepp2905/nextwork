@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import AskMessages from './ask/AskMessages.jsx';
-import AskComposer from './ask/AskComposer.jsx';
-import Tooltip from './Tooltip';
-import { Sparkle, Close, ArrowDownRight } from './icons/Icons';
-import { formatAnswer, pickRandomQuestions } from './ask/clarifyQuestions.js';
+import AskMessages from './AskMessages.jsx';
+import AskComposer from './AskComposer.jsx';
+import Tooltip from '../Tooltip';
+import { Sparkle, Close, ArrowDownRight } from '../icons/Icons';
+import { formatAnswer, pickRandomQuestions } from './clarifyQuestions.js';
 import './AskPanel.css';
 
 const SUGGESTIONS = [

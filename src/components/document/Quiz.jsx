@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Cross } from './icons/Icons';
+import { Check, Cross } from '../icons/Icons';
 import './Quiz.css';
 
 const QUESTION = {

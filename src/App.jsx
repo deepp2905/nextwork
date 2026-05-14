@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import AskPanel from './components/AskPanel.jsx';
-import DocumentationPanel from './components/DocumentationPanel.jsx';
-import Document from './components/Document.jsx';
+import AskPanel from './components/ask/AskPanel.jsx';
+import DocumentationPanel from './components/documentation/DocumentationPanel.jsx';
+import Document from './components/document/Document.jsx';
 import MenuBar from './components/MenuBar.jsx';
 import SelectionPopup from './components/selection/SelectionPopup.jsx';
 import './App.css';

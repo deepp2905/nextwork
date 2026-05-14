@@ -1,7 +1,7 @@
 import Checklist from './Checklist.jsx';
 import Quiz from './Quiz.jsx';
-import Quote from './doc/Quote.jsx';
-import CodeBlock from './doc/CodeBlock.jsx';
+import Quote from './Quote.jsx';
+import CodeBlock from './CodeBlock.jsx';
 import './Document.css';
 
 function ImagePlaceholder({ caption, ratio = '16 / 9' }) {

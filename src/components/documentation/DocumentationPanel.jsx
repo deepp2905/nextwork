@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Close, Pin } from './icons/Icons';
-import Tooltip from './Tooltip';
+import { Close, Pin } from '../icons/Icons';
+import Tooltip from '../Tooltip';
 import DocThemeToolbar from './DocThemeToolbar';
 import DocumentationMock from './DocumentationMock';
 import './DocumentationPanel.css';

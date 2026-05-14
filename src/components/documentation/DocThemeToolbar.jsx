@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import Tooltip from './Tooltip';
-import { Cube } from './icons/Icons';
+import Tooltip from '../Tooltip';
+import { Cube } from '../icons/Icons';
 import './DocThemeToolbar.css';
 
 const COLOR_OPTIONS = [

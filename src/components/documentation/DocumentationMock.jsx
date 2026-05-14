@@ -1,5 +1,5 @@
-import { proofOfWork } from '../data/proofOfWork';
-import Editable from './doc/Editable';
+import { proofOfWork } from '../../data/proofOfWork';
+import Editable from './Editable';
 import './DocumentationMock.css';
 
 export default function DocumentationMock() {
