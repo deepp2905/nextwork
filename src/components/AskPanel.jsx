@@ -63,17 +63,10 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
   const [thinking, setThinking] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
-  const [reachedLast, setReachedLast] = useState(false);
   const [answers, setAnswers] = useState({});
   const [customText, setCustomText] = useState({});
   const [activeQuestions, setActiveQuestions] = useState([]);
   const inputRef = useRef(null);
-
-  useEffect(() => {
-    if (activeQuestions.length && stepIndex === activeQuestions.length - 1) {
-      setReachedLast(true);
-    }
-  }, [stepIndex, activeQuestions]);
 
   useEffect(() => {
     if (modalOpen || thinking) return;
@@ -109,7 +102,6 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
     setAnswers({});
     setCustomText({});
     setStepIndex(0);
-    setReachedLast(false);
     setActiveQuestions(pickRandomQuestions());
     setThinking(true);
     setTimeout(() => {
@@ -262,7 +254,6 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         inputRef={inputRef}
         stepIndex={stepIndex}
         setStepIndex={setStepIndex}
-        reachedLast={reachedLast}
         questions={activeQuestions}
         answers={answers}
         customText={customText}

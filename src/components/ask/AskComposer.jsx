@@ -13,7 +13,6 @@ export default function AskComposer({
   onClearQuote,
   stepIndex,
   setStepIndex,
-  reachedLast,
   questions,
   answers,
   customText,
@@ -57,7 +56,6 @@ export default function AskComposer({
           <AskModal
             stepIndex={stepIndex}
             setStepIndex={setStepIndex}
-            reachedLast={reachedLast}
             questions={questions}
             answers={answers}
             customText={customText}

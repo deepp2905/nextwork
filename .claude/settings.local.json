@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -oh \"ask-panel__[a-z-]*\" \"d:/Design Engineering/nextwork/src/components/AskPanel.css\" | sort -u > /tmp/ask-panel-defined.txt; grep -rho \"ask-panel__[a-z-]*\" \"d:/Design Engineering/nextwork/src/components/\" | sort -u > /tmp/ask-panel-used.txt; comm -23 /tmp/ask-panel-defined.txt /tmp/ask-panel-used.txt)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
+    ]
+  }
+}

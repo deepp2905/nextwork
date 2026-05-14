@@ -206,62 +206,6 @@
   flex-shrink: 0;
 }
 
-.ask-modal__nav {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.ask-modal__arrow {
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-dark-gray);
-  font-size: var(--text-18);
-  line-height: 1;
-}
-
-.ask-modal__arrow:hover:not(:disabled) {
-  background: var(--color-white-smoke);
-}
-
-.ask-modal__arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.ask-modal__count {
-  min-width: 28px;
-  text-align: center;
-  color: var(--color-dark-gray);
-}
-
-.ask-modal__dots {
-  display: flex;
-  gap: 6px;
-}
-
-.ask-modal__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--color-gainsboro);
-  padding: 0;
-  transition: background-color 120ms ease, transform 120ms ease;
-}
-
-.ask-modal__dot--done {
-  background: var(--color-stone-gray);
-}
-
-.ask-modal__dot--active {
-  background: var(--color-dark-gray);
-  transform: scale(1.15);
-}
-
 .ask-modal__body {
   display: flex;
   flex-direction: column;

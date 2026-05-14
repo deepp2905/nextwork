@@ -85,13 +85,6 @@ export const CheckMark = ({ size = 16, ...props }) => (
   </svg>
 );
 
-export const Microphone = ({ size = 20, ...props }) => (
-  <svg width={size} height={size} viewBox="0 0 20 20" {...baseProps} {...props}>
-    <path d="M10 1.667C8.159 1.667 6.667 3.159 6.667 5v5c0 1.841 1.492 3.333 3.333 3.333S13.333 11.841 13.333 10V5c0-1.841-1.492-3.333-3.333-3.333Z" />
-    <path d="M17.5 10c0 4.142-3.358 7.5-7.5 7.5M10 17.5c-4.142 0-7.5-3.358-7.5-7.5M10 17.5V20" />
-  </svg>
-);
-
 export const Pin = ({ size = 24, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" {...baseProps} strokeWidth={2} {...props}>
     <path d="M18 10V3.6c0-.56 0-.84-.109-1.054a1 1 0 0 0-.437-.437C17.24 2 16.96 2 16.4 2H7.6c-.56 0-.84 0-1.054.109a1 1 0 0 0-.437.437C6 2.76 6 3.04 6 3.6V10m12 0H6m12 0v.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C15.72 15 14.88 15 13.2 15h-2.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C6 12.72 6 11.88 6 10.2V10m8.5 5v4.5a2.5 2.5 0 0 1-5 0V15" />
@@ -103,11 +96,5 @@ export const Cube = ({ size = 18, ...props }) => (
     <path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z" />
     <path d="M3 7l9 4.5L21 7" />
     <path d="M12 11.5V21.5" />
-  </svg>
-);
-
-export const Expand = ({ size = 24, ...props }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" {...baseProps} strokeWidth={2} {...props}>
-    <path d="m14 10 7-7m0 0h-6m6 0v6m-11 5-7 7m0 0h6m-6 0v-6" />
   </svg>
 );

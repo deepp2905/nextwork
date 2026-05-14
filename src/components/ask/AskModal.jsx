@@ -5,7 +5,6 @@ import AskModalOption from './AskModalOption.jsx';
 export default function AskModal({
   stepIndex,
   setStepIndex,
-  reachedLast,
   questions,
   answers,
   customText,
@@ -21,7 +20,6 @@ export default function AskModal({
   const currentQuestion = questions[stepIndex];
   const isLast = stepIndex === totalSteps - 1;
   const showSubmit = isLast;
-  const currentDone = isAnswered(currentQuestion.id);
 
   const [direction, setDirection] = useState(1);
   const goPrev = () => {
