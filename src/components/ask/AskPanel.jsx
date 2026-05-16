@@ -90,6 +90,19 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [modalOpen, thinking]);
 
+  // When text is sent to Ask from the selection popup, focus the input row
+  // so the user gets a blinking cursor and can type their question immediately.
+  useEffect(() => {
+    if (!pendingQuote || modalOpen || thinking) return;
+    const el = inputRef.current;
+    if (!el) return;
+    requestAnimationFrame(() => {
+      el.focus();
+      const len = el.value.length;
+      el.setSelectionRange(len, len);
+    });
+  }, [pendingQuote, modalOpen, thinking]);
+
   const aiDelay = () => 1000 + Math.random() * 1000;
 
   const send = (text) => {
