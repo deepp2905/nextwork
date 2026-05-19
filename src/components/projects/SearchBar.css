@@ -4,7 +4,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 8px 8px 20px;
+  /* fixed height so both variants match regardless of contents */
+  height: 56px;
+  padding: 0 8px 0 20px;
   background: var(--color-white);
   border: 1.5px solid var(--color-dark-gray);
   border-radius: 16px;
@@ -43,10 +45,13 @@
 /* Generate button (Explore only) */
 .projects-search__generate {
   flex-shrink: 0;
+  align-self: stretch;
+  /* fill the bar height minus an even inset on both sides */
+  margin: 8px 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 18px;
+  padding: 0 18px;
   border-radius: 10px;
   color: var(--color-white);
   background: var(--color-dark-gray);
