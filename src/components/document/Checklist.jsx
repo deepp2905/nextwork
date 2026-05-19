@@ -47,8 +47,8 @@ export default function Checklist({ items, variant = 'linen' }) {
                         d="M2.5 6.25 5 8.75 9.5 3.75"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
-                        exit={{ pathLength: 0, transition: { duration: 0 } }}
-                        transition={{ duration: 0.12, ease: [0.65, 0, 0.35, 1] }}
+                        exit={{ pathLength: 0, transition: { duration: 0.08, ease: 'easeOut' } }}
+                        transition={{ duration: 0.16, ease: 'easeOut' }}
                       />
                     </svg>
                   )}
