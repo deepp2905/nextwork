@@ -106,6 +106,41 @@ export const CATEGORIES = [
     blurb: 'React Native, Expo and shipping to the app stores.',
     filter: 'roadmaps',
   },
+  {
+    id: 'prompt-engineering',
+    title: 'Prompt Engineering',
+    count: 22,
+    blurb: 'Structured prompts, few-shot, chaining and evals.',
+    filter: 'specialty',
+  },
+  {
+    id: 'observability',
+    title: 'Observability',
+    count: 10,
+    blurb: 'Tracing, metrics, logs and incident response.',
+    filter: 'specialty',
+  },
+  {
+    id: 'testing-qa',
+    title: 'Testing & QA',
+    count: 17,
+    blurb: 'Unit, integration, e2e and visual regression.',
+    filter: 'specialty',
+  },
+  {
+    id: 'agents',
+    title: 'AI Agents',
+    count: 20,
+    blurb: 'Planning, tool use, memory and multi-agent systems.',
+    filter: 'specialty',
+  },
+  {
+    id: 'browser-extensions',
+    title: 'Browser Extensions',
+    count: 8,
+    blurb: 'Manifest V3, content scripts and extension APIs.',
+    filter: 'tools',
+  },
 ];
 
 // counts derived from CATEGORIES so the pills always match the grid

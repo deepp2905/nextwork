@@ -23,13 +23,13 @@
 .projects-card__body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 14px 16px 16px;
+  gap: 8px;
+  padding: 16px;
 }
 
 .projects-card__heading {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 12px;
 }
@@ -44,5 +44,6 @@
 }
 
 .projects-card__blurb {
+  margin: 0;
   color: var(--color-stone-gray);
 }
