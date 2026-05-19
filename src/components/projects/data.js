@@ -9,11 +9,17 @@ export const VIEWS = [
 
 export const CATEGORIES = [
   {
+    id: 'design-engineering',
+    title: 'Design Engineering',
+    count: 11,
+    blurb: 'Design tokens, component libraries and design-to-code.',
+    filter: 'tools',
+  },
+  {
     id: 'all-projects',
     title: 'All projects',
     count: 75,
     blurb: 'Everything across roadmaps, specialties and tools.',
-    featured: true,
     filter: 'all',
   },
   {

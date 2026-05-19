@@ -12,9 +12,3 @@
   min-height: 0;
   overflow-y: auto;
 }
-
-.projects-modal__empty {
-  padding: 48px 24px;
-  text-align: center;
-  color: var(--color-stone-gray);
-}

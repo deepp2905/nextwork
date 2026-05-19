@@ -12,10 +12,15 @@ export default function ExploreView() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [query, setQuery] = useState('');
 
-  const visible =
-    activeFilter === 'all'
-      ? CATEGORIES
-      : CATEGORIES.filter((c) => c.filter === activeFilter);
+  const q = query.trim().toLowerCase();
+  const visible = CATEGORIES.filter((c) => {
+    const matchesFilter = activeFilter === 'all' || c.filter === activeFilter;
+    const matchesQuery =
+      q === '' ||
+      c.title.toLowerCase().includes(q) ||
+      c.blurb.toLowerCase().includes(q);
+    return matchesFilter && matchesQuery;
+  });
 
   return (
     <>
@@ -62,11 +67,17 @@ export default function ExploreView() {
       </div>
 
       <div className="projects-modal__grid-scroll">
-        <div className="projects-modal__grid">
-          {visible.map((category) => (
-            <CategoryCard key={category.id} {...category} />
-          ))}
-        </div>
+        {visible.length > 0 ? (
+          <div className="projects-modal__grid">
+            {visible.map((category) => (
+              <CategoryCard key={category.id} {...category} />
+            ))}
+          </div>
+        ) : (
+          <p className="projects-modal__empty type-small-body">
+            No categories match your search.
+          </p>
+        )}
       </div>
     </>
   );
