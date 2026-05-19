@@ -114,6 +114,5 @@
   border-radius: 8px;
   background: var(--color-linen);
   color: var(--color-dark-gray);
-  font-weight: 500;
   white-space: nowrap;
 }

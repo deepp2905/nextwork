@@ -82,9 +82,13 @@ export default function ProjectsOverlay({ onClose }) {
   return (
     <motion.div
       className="projects-overlay"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.08, ease: 'easeOut' } }}
+      initial={{ opacity: 0, pointerEvents: 'none' }}
+      animate={{ opacity: 1, pointerEvents: 'auto' }}
+      exit={{
+        opacity: 0,
+        pointerEvents: 'none',
+        transition: { duration: 0.08, ease: 'easeOut' },
+      }}
       transition={{ duration: 0.16, ease: 'easeOut' }}
       onMouseDown={onBackdropMouseDown}
       onClick={onBackdropClick}

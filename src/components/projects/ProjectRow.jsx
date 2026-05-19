@@ -43,7 +43,7 @@ export default function ProjectRow({ project }) {
       </div>
 
       {complete ? (
-        <span className="projects-row__doc type-small-body-14">
+        <span className="projects-row__doc type-subheading">
           View documentation
         </span>
       ) : (
