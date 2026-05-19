@@ -1,0 +1,22 @@
+/* Toolbar sort control. */
+
+.projects-sort {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--color-dark-gray);
+  background: var(--color-white);
+  border: 1px solid var(--color-gainsboro);
+  transition: background-color 120ms ease;
+}
+
+.projects-sort:hover {
+  background: var(--color-linen);
+}
+
+.projects-sort svg {
+  color: var(--color-stone-gray);
+}

@@ -1,0 +1,39 @@
+/* Explore / My Projects segmented toggle. */
+
+.projects-modal__views {
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--color-linen);
+}
+
+.projects-view {
+  position: relative;
+  padding: 10px 22px;
+  border-radius: 999px;
+  color: var(--color-stone-gray);
+  transition: color 120ms ease;
+}
+
+.projects-view:hover {
+  color: var(--color-dark-gray);
+}
+
+.projects-view--active,
+.projects-view--active:hover {
+  color: var(--color-dark-gray);
+}
+
+/* sliding white background, shared via layoutId */
+.projects-view__pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--color-white);
+}
+
+.projects-view__label {
+  position: relative;
+  z-index: 1;
+}

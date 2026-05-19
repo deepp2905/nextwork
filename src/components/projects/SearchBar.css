@@ -1,0 +1,78 @@
+/* Search field — default (Explore, with Generate) and plain (My Projects). */
+
+.projects-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 8px 20px;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-dark-gray);
+  border-radius: 16px;
+  cursor: text;
+  transition: outline-offset 120ms ease;
+}
+
+.projects-search:has(.projects-search__input:focus-visible) {
+  outline: 2px solid var(--color-stone-gray);
+  outline-offset: 2px;
+}
+
+.projects-search__icon {
+  flex-shrink: 0;
+  color: var(--color-dark-gray);
+}
+
+.projects-search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--color-dark-gray);
+  font-family: var(--font-sans);
+}
+
+.projects-search__input:focus-visible {
+  outline: none;
+}
+
+.projects-search__input::placeholder {
+  color: var(--color-stone-gray);
+}
+
+/* Generate button (Explore only) */
+.projects-search__generate {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: var(--color-white);
+  background: var(--color-dark-gray);
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+.projects-search__generate:hover {
+  opacity: 0.9;
+}
+
+.projects-search__generate svg {
+  fill: var(--color-white);
+  stroke: var(--color-white);
+}
+
+/* Plain variant — My Projects */
+.projects-search--plain {
+  gap: 10px;
+  height: 46px;
+  padding: 8px 8px 8px 20px;
+  background: var(--color-white-smoke);
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+
+.projects-search--plain .projects-search__icon {
+  color: var(--color-stone-gray);
+}

@@ -1,0 +1,56 @@
+/* Toolbar pill filters + status dots. */
+
+.projects-modal__filters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.projects-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--color-stone-gray);
+  line-height: 1;
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+.projects-filter > span {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.projects-filter:hover {
+  color: var(--color-dark-gray);
+}
+
+.projects-filter--active,
+.projects-filter--active:hover {
+  color: var(--color-white);
+  background: var(--color-dark-gray);
+}
+
+.projects-filter__count {
+  font-size: var(--text-12);
+  opacity: 0.6;
+}
+
+/* Status dots (My Projects) */
+.projects-status-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.projects-status-dot--in-progress {
+  background: var(--color-light-sea-green);
+}
+
+.projects-status-dot--completed {
+  background: var(--color-stone-gray);
+}
