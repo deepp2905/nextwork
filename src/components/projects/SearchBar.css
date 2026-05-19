@@ -64,13 +64,11 @@
 }
 
 /* Plain variant — My Projects */
+/* Subtle variant — My Projects.
+   Shares the base shape; only background + border differ for emphasis. */
 .projects-search--plain {
-  gap: 10px;
-  height: 46px;
-  padding: 8px 8px 8px 20px;
   background: var(--color-white-smoke);
-  border: 1px solid transparent;
-  border-radius: 12px;
+  border-color: transparent;
 }
 
 .projects-search--plain .projects-search__icon {

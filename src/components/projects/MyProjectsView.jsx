@@ -40,8 +40,6 @@ export default function MyProjectsView() {
           value={query}
           onChange={setQuery}
           placeholder="Search your projects…"
-          inputClassName="type-small-body-14"
-          iconSize={16}
         />
       </div>
 
