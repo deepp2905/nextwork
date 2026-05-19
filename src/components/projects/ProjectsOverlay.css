@@ -45,9 +45,12 @@
 }
 
 .projects-view {
+  flex: 1;
+  min-width: 116px;
   padding: 10px 22px;
   border-radius: 999px;
   color: var(--color-stone-gray);
+  text-align: center;
   transition: color 120ms ease, background-color 120ms ease;
 }
 
@@ -142,10 +145,6 @@
 
 .projects-search--plain .projects-search__icon {
   color: var(--color-stone-gray);
-}
-
-.projects-search--plain:has(.projects-search__input:focus-visible) {
-  border-color: var(--color-gainsboro);
 }
 
 .projects-search__icon {

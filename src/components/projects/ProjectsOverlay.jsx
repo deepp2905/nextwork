@@ -268,7 +268,6 @@ const statusOf = (p) => {
 
 // totals as shown in the reference's filter pills
 const STATUS_FILTERS = [
-  { id: 'all', label: 'All', count: 35 },
   { id: 'in-progress', label: 'In progress', count: 12 },
   { id: 'completed', label: 'Completed', count: 18 },
   { id: 'not-started', label: 'Not started', count: 5 },
@@ -326,7 +325,7 @@ function ProjectRow({ project }) {
 }
 
 function MyProjectsView() {
-  const [activeStatus, setActiveStatus] = useState('all');
+  const [activeStatus, setActiveStatus] = useState('in-progress');
   const [query, setQuery] = useState('');
 
   const summary = useMemo(() => {
@@ -336,8 +335,7 @@ function MyProjectsView() {
   }, []);
 
   const visible = MY_PROJECTS.filter((p) => {
-    const matchesStatus =
-      activeStatus === 'all' || statusOf(p) === activeStatus;
+    const matchesStatus = statusOf(p) === activeStatus;
     const matchesQuery = p.title
       .toLowerCase()
       .includes(query.trim().toLowerCase());
@@ -465,7 +463,7 @@ export default function ProjectsOverlay({ onClose }) {
             {VIEWS.map(({ id, label }) => {
               const isActive = activeView === id;
               return (
-                <button
+                <motion.button
                   key={id}
                   type="button"
                   role="tab"
@@ -474,9 +472,11 @@ export default function ProjectsOverlay({ onClose }) {
                     isActive ? ' projects-view--active' : ''
                   }`}
                   onClick={() => selectView(id)}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: 'spring', stiffness: 600, damping: 30 }}
                 >
                   {label}
-                </button>
+                </motion.button>
               );
             })}
           </div>
