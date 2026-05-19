@@ -91,6 +91,41 @@ export const Pin = ({ size = 24, ...props }) => (
   </svg>
 );
 
+export const Search = ({ size = 20, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 20 20" {...baseProps} strokeWidth={1.6} {...props}>
+    <circle cx="9" cy="9" r="6.25" />
+    <path d="M14 14 17.5 17.5" />
+  </svg>
+);
+
+export const SortLines = ({ size = 12, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 12 12" {...baseProps} strokeWidth={1.4} {...props}>
+    <path d="M2 3H10" />
+    <path d="M3.5 6H8.5" />
+    <path d="M5 9H7" />
+  </svg>
+);
+
+export const ChevronRight = ({ size = 12, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 12 12" {...baseProps} {...props}>
+    <path d="M4 2 8 6 4 10" />
+  </svg>
+);
+
+export const CheckCircle = ({ size = 14, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none" {...props}>
+    <circle cx="7" cy="7" r="5.5" fill="currentColor" />
+    <path
+      d="M4.5 7 6.3 8.5 9.5 5.5"
+      fill="none"
+      stroke="#fff"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const Cube = ({ size = 18, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" {...baseProps} strokeWidth={1.75} {...props}>
     <path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z" />
