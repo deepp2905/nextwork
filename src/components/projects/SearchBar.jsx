@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Sparkle } from '../icons/Icons';
+import { Search, Sparkle, Cross } from '../icons/Icons';
 import './SearchBar.css';
 
 /**
@@ -31,6 +31,11 @@ export default function SearchBar({
       ? 'projects-search projects-search--plain'
       : 'projects-search';
 
+  const clear = () => {
+    onChange('');
+    inputRef.current?.focus();
+  };
+
   return (
     <div className={className} onMouseDown={focusInput}>
       <Search size={iconSize} className="projects-search__icon" />
@@ -42,6 +47,18 @@ export default function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
+      {value && (
+        <motion.button
+          type="button"
+          className="projects-search__clear"
+          aria-label="Clear search"
+          onClick={clear}
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: 'spring', stiffness: 600, damping: 30 }}
+        >
+          <Cross size={12} />
+        </motion.button>
+      )}
       {onGenerate && (
         <motion.button
           type="button"

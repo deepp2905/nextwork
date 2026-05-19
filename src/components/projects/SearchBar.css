@@ -40,6 +40,25 @@
   color: var(--color-stone-gray);
 }
 
+/* Clear button — shown once the field has text */
+.projects-search__clear {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: var(--color-stone-gray);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.projects-search__clear:hover {
+  background: var(--color-linen);
+  color: var(--color-dark-gray);
+}
+
 /* Generate button (Explore only) */
 .projects-search__generate {
   flex-shrink: 0;

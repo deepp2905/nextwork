@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { CheckCircle, ChevronRight } from '../icons/Icons';
 import { statusOf } from './data';
 import './ProjectRow.css';
@@ -10,12 +9,7 @@ export default function ProjectRow({ project }) {
   const complete = status === 'completed';
 
   return (
-    <motion.button
-      type="button"
-      className="projects-row"
-      whileTap={{ scale: 0.995 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 32 }}
-    >
+    <button type="button" className="projects-row">
       <div className="projects-row__main">
         <div className="projects-row__title-line">
           <span className="projects-row__title type-subheading">
@@ -48,9 +42,15 @@ export default function ProjectRow({ project }) {
         </div>
       </div>
 
-      <span className="projects-row__chevron">
-        <ChevronRight size={12} />
-      </span>
-    </motion.button>
+      {complete ? (
+        <span className="projects-row__doc type-small-body-14">
+          View documentation
+        </span>
+      ) : (
+        <span className="projects-row__chevron">
+          <ChevronRight size={12} />
+        </span>
+      )}
+    </button>
   );
 }

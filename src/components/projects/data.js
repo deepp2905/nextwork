@@ -7,13 +7,6 @@ export const VIEWS = [
 
 /* ─────────────── Explore ─────────────── */
 
-export const FILTERS = [
-  { id: 'all', label: 'All', count: 75 },
-  { id: 'roadmaps', label: 'Roadmaps', count: 9 },
-  { id: 'specialty', label: 'Specialty', count: 28 },
-  { id: 'tools', label: 'Tools', count: 38 },
-];
-
 export const CATEGORIES = [
   {
     id: 'all-projects',
@@ -114,6 +107,17 @@ export const CATEGORIES = [
     blurb: 'React Native, Expo and shipping to the app stores.',
     filter: 'roadmaps',
   },
+];
+
+// counts derived from CATEGORIES so the pills always match the grid
+const countByFilter = (filterId) =>
+  CATEGORIES.filter((c) => c.filter === filterId).length;
+
+export const FILTERS = [
+  { id: 'all', label: 'All', count: CATEGORIES.length },
+  { id: 'roadmaps', label: 'Roadmaps', count: countByFilter('roadmaps') },
+  { id: 'specialty', label: 'Specialty', count: countByFilter('specialty') },
+  { id: 'tools', label: 'Tools', count: countByFilter('tools') },
 ];
 
 export const RECOMMENDATIONS = [
@@ -247,8 +251,11 @@ export const MY_PROJECTS = [
 // status is derived: all tasks done → completed, otherwise in-progress
 export const statusOf = (p) => (p.done >= p.total ? 'completed' : 'in-progress');
 
-// totals as shown in the reference's filter pills
+// counts derived from MY_PROJECTS so the pills always match the list
+const countByStatus = (status) =>
+  MY_PROJECTS.filter((p) => statusOf(p) === status).length;
+
 export const STATUS_FILTERS = [
-  { id: 'in-progress', label: 'In progress', count: 17 },
-  { id: 'completed', label: 'Completed', count: 18 },
+  { id: 'in-progress', label: 'In progress', count: countByStatus('in-progress') },
+  { id: 'completed', label: 'Completed', count: countByStatus('completed') },
 ];

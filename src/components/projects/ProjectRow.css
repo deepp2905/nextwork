@@ -109,3 +109,26 @@
 .projects-row:hover .projects-row__chevron {
   background: var(--color-gainsboro);
 }
+
+.projects-row__doc {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--color-linen);
+  color: var(--color-dark-gray);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+}
+
+.projects-row__doc svg {
+  flex-shrink: 0;
+}
+
+.projects-row:hover .projects-row__doc {
+  background: var(--color-gainsboro);
+}
