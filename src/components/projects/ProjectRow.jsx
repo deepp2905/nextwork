@@ -35,7 +35,7 @@ export default function ProjectRow({ project }) {
         <div className="projects-row__track">
           <div
             className={`projects-row__fill${
-              complete ? ' projects-row__fill--accent' : ''
+              complete ? '' : ' projects-row__fill--accent'
             }`}
             style={{ width: `${pct}%` }}
           />
