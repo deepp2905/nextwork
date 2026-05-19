@@ -100,13 +100,6 @@ export const CATEGORIES = [
     filter: 'tools',
   },
   {
-    id: 'design-engineering',
-    title: 'Design Engineering',
-    count: 11,
-    blurb: 'Design tokens, component libraries and design-to-code.',
-    filter: 'tools',
-  },
-  {
     id: 'mobile',
     title: 'Mobile',
     count: 13,

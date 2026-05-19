@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import './CategoryCard.css';
 
 /** A single category card in the Explore grid. */
-export default function CategoryCard({ title, count, blurb, featured }) {
+export default function CategoryCard({ title, count, blurb }) {
   return (
     <motion.button
       type="button"
@@ -10,14 +10,7 @@ export default function CategoryCard({ title, count, blurb, featured }) {
       whileTap={{ scale: 0.99 }}
       transition={{ type: 'spring', stiffness: 500, damping: 32 }}
     >
-      <div className="projects-card__media">
-        {featured && (
-          <span className="projects-card__badge type-small-body-14">
-            <span className="projects-card__badge-dot" />
-            Featured
-          </span>
-        )}
-      </div>
+      <div className="projects-card__media" />
       <div className="projects-card__body">
         <div className="projects-card__heading">
           <span className="type-h3">{title}</span>
