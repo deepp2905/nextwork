@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import AskPanel from './components/ask/AskPanel.jsx';
 import DocumentationPanel from './components/documentation/DocumentationPanel.jsx';
+import ProjectsOverlay from './components/projects/ProjectsOverlay.jsx';
 import Document from './components/document/Document.jsx';
 import MenuBar from './components/MenuBar.jsx';
 import SelectionPopup from './components/selection/SelectionPopup.jsx';
@@ -175,6 +176,14 @@ export default function App() {
               <DocumentationPanel onClose={() => setActiveTab(null)} />
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence initial={false}>
+        {activeTab === 'projects' && (
+          <ProjectsOverlay
+            key="projects-overlay"
+            onClose={() => setActiveTab(null)}
+          />
         )}
       </AnimatePresence>
       <SelectionPopup articleSelector=".doc" onAsk={handleAskFromSelection} />
