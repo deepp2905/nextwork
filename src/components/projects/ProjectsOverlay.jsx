@@ -84,7 +84,7 @@ export default function ProjectsOverlay({ onClose }) {
       className="projects-overlay"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, transition: { duration: 0.08, ease: 'easeOut' } }}
       transition={{ duration: 0.16, ease: 'easeOut' }}
       onMouseDown={onBackdropMouseDown}
       onClick={onBackdropClick}
@@ -97,8 +97,13 @@ export default function ProjectsOverlay({ onClose }) {
         aria-label="Projects"
         initial={{ opacity: 0, scale: 0.97, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.97, y: 8 }}
-        transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+        exit={{
+          opacity: 0,
+          scale: 0.97,
+          y: 8,
+          transition: { duration: 0.08, ease: 'easeOut' },
+        }}
+        transition={{ duration: 0.16, ease: 'easeOut' }}
       >
         <header className="projects-modal__header">
           <ViewTabs activeView={activeView} onSelect={selectView} />

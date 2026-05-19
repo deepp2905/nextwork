@@ -31,8 +31,7 @@ export default function MyProjectsView() {
         <div className="projects-modal__title-group">
           <h2 className="type-h1">Pick up where you left off</h2>
           <p className="projects-modal__subtitle type-body">
-            {summary['in-progress']} projects in progress and {summary.completed}{' '}
-            completed — jump back into one below.
+            Every completed task brings you closer to where you want to be
           </p>
         </div>
 
