@@ -13,7 +13,7 @@ const QUESTION = {
   ],
   correct: 'b',
   explanation:
-    'Amplify Hosting connects directly to your Git repo, builds on each push, and serves the app over a CDN — no extra glue needed.',
+    'Amplify Hosting connects directly to your Git repo, builds on each push, and serves the app over a CDN, with no extra glue needed.',
 };
 
 export default function Quiz() {

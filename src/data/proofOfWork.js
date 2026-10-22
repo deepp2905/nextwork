@@ -29,7 +29,7 @@ export const proofOfWork = {
       key: 'challenges',
       eyebrow: 'Challenges',
       title: 'What was the most difficult?',
-      body: 'The trickiest part was getting the Origin Access Control bucket policy right — older tutorials still reference the deprecated OAI pattern, so the policy snippets I copied first did not match the new principal format. I also got bitten by certificate region: ACM certs must be in us-east-1 for CloudFront, regardless of where the rest of your stack lives.',
+      body: 'The trickiest part was getting the Origin Access Control bucket policy right: older tutorials still reference the deprecated OAI pattern, so the policy snippets I copied first did not match the new principal format. I also got bitten by certificate region: ACM certs must be in us-east-1 for CloudFront, regardless of where the rest of your stack lives.',
       imageLabel: 'Bucket policy + OAC configuration',
     },
     {

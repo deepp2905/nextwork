@@ -87,8 +87,8 @@ export const formatAnswer = (q, value, custom) => {
   if (q.type === 'multi') {
     const arr = Array.isArray(value) ? value : [];
     const all = extra ? [...arr, extra] : arr;
-    return all.length ? all.join(', ') : '—';
+    return all.length ? all.join(', ') : 'Not answered';
   }
   if (extra) return extra;
-  return value || '—';
+  return value || 'Not answered';
 };

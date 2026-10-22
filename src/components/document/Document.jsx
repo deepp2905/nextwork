@@ -43,7 +43,7 @@ export default function Document() {
         <h1 className="doc__title type-h1" data-highlightable>Deploy a Web App on AWS</h1>
         <p className="doc__lede type-large-body" data-highlightable>
           A step-by-step guide to taking a React app from your laptop to a live
-          URL on AWS Amplify — with checkpoints along the way to make sure
+          URL on AWS Amplify, with checkpoints along the way to make sure
           nothing gets skipped.
         </p>
       </header>
@@ -89,7 +89,7 @@ export default function Document() {
         <p className="type-body" data-highlightable>
           Amplify deploys directly from a Git provider, so your code needs to
           live in GitHub, GitLab, or Bitbucket. If you already have a repo, you
-          can skip ahead — otherwise, initialize one and push your first
+          can skip ahead; otherwise, initialize one and push your first
           commit.
         </p>
         <CodeBlock language="bash">{`git init
@@ -157,7 +157,7 @@ frontend:
         <p className="type-body" data-highlightable>
           The default <code>amplifyapp.com</code> URL works, but most projects
           want their own domain. From the <em>Domain management</em> tab, point
-          your DNS at the provided records — Amplify handles SSL automatically
+          your DNS at the provided records. Amplify handles SSL automatically
           once propagation finishes.
         </p>
         <Quote title="DNS takes time">
@@ -180,7 +180,7 @@ frontend:
         <p className="type-body" data-highlightable>
           Open your live URL and click through the golden path. Then set up a
           basic CloudWatch alarm so you&rsquo;ll know if traffic disappears or
-          error rates spike. You&rsquo;re done — every push to your main branch
+          error rates spike. You&rsquo;re done! Every push to your main branch
           will now redeploy automatically.
         </p>
         <Checklist

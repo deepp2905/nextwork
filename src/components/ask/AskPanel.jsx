@@ -185,7 +185,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         ...prev,
         {
           from: 'assistant',
-          text: `Thanks for the context — that helps me tailor this. Based on what you've shared, here's where I'd start:\n\n${LOREM}`,
+          text: `Thanks for the context. That helps me tailor this. Based on what you've shared, here's where I'd start:\n\n${LOREM}`,
         },
       ]);
       setThinking(false);
@@ -200,7 +200,7 @@ export default function AskPanel({ onClose, pendingQuote, onClearQuote }) {
         ...prev,
         {
           from: 'assistant',
-          text: `No problem — here's a general answer:\n\n${LOREM}`,
+          text: `No problem. Here's a general answer:\n\n${LOREM}`,
         },
       ]);
       setThinking(false);
