@@ -1,4 +1,4 @@
-/* Search field — default (Explore, with Generate) and plain (My Projects). */
+/* Search field: default (Explore, with Generate) and plain (My Projects). */
 
 .projects-search {
   display: flex;
@@ -68,8 +68,8 @@
   stroke: var(--color-white);
 }
 
-/* Plain variant — My Projects */
-/* Subtle variant — My Projects.
+/* Plain variant: My Projects */
+/* Subtle variant: My Projects.
    Shares the base shape; only background + border differ for emphasis. */
 .projects-search--plain {
   background: var(--color-white-smoke);

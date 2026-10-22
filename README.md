@@ -1,6 +1,6 @@
 # Nextwork
 
-An interactive learning-platform prototype built around a tutorial-style document with two contextual side panels — **Ask** (an AI-style chat assistant) and **Documentation** (a live, themeable workspace where the user can author their own notes).
+An interactive learning-platform prototype built around a tutorial-style document with two contextual side panels: **Ask** (an AI-style chat assistant) and **Documentation** (a live, themeable workspace where the user can author their own notes).
 
 The focus is on micro-interactions: every state change, panel transition, and small affordance is hand-tuned. This README documents what's in the build and how it behaves.
 
@@ -45,13 +45,13 @@ Both side panels:
 
 ## Keyboard shortcuts
 
-- `Ctrl/⌘ + ◄` — toggle the Ask panel
-- `Ctrl/⌘ + ►` — toggle the Documentation panel
-- `Esc` — close whichever panel is currently open
+- `Ctrl/⌘ + ◄`: toggle the Ask panel
+- `Ctrl/⌘ + ►`: toggle the Documentation panel
+- `Esc`: close whichever panel is currently open
 
 The shortcut symbols render reliably across Windows + Mac (chose filled triangles after a font-fallback test on Windows).
 
-Any printable key pressed while the Ask panel is open and no input is focused auto-focuses the Ask input and appends the character — a small but useful "just start typing" affordance.
+Any printable key pressed while the Ask panel is open and no input is focused auto-focuses the Ask input and appends the character: a small but useful "just start typing" affordance.
 
 ---
 
@@ -60,8 +60,8 @@ Any printable key pressed while the Ask panel is open and no input is focused au
 Floating dark pill at the bottom-center of the viewport.
 
 - Tab buttons (Ask, Projects, Documentation) with icon + label.
-- **Tap scale** is driven from the button's `onPointerDown` (not Framer's built-in `whileTap`), so pressing anywhere inside the button's padded area — not just on the icon/text — triggers the 0.95 scale. `onPointerLeave` and `onPointerCancel` reset it so it never sticks.
-- Tooltips on hover with each tab's keyboard shortcut. Tooltips are **suppressed for all items when any tab is active** — once you've made a choice, no more nagging.
+- **Tap scale** is driven from the button's `onPointerDown` (not Framer's built-in `whileTap`), so pressing anywhere inside the button's padded area: not just on the icon/text: triggers the 0.95 scale. `onPointerLeave` and `onPointerCancel` reset it so it never sticks.
+- Tooltips on hover with each tab's keyboard shortcut. Tooltips are **suppressed for all items when any tab is active**: once you've made a choice, no more nagging.
 - Tooltip distance accounts for the MenuBar's 32px box-shadow halo (`gap={16}`).
 
 ---
@@ -72,8 +72,8 @@ Chat-style assistant with a clarifying-questions modal.
 
 ### Welcome state
 - Animated Sparkle icon rotates `-540°` to `0°` over 1.6s easeInOut on first open.
-- Four suggestion chips below the welcome message — each has a downward-right arrow icon, the label, and on click prefills the composer (not auto-sent — the user can edit before sending).
-- Suggestion chips hide automatically when a quoted text is pending (i.e. user clicked "Ask" from a document selection — they already have an intent).
+- Four suggestion chips below the welcome message: each has a downward-right arrow icon, the label, and on click prefills the composer (not auto-sent: the user can edit before sending).
+- Suggestion chips hide automatically when a quoted text is pending (i.e. user clicked "Ask" from a document selection: they already have an intent).
 
 ### Composer
 - Auto-growing `<textarea>` (max-height 200px).
@@ -87,7 +87,7 @@ Chat-style assistant with a clarifying-questions modal.
 - Assistant messages: light bubble, left-aligned.
 - **Word-by-word streaming** for the latest assistant message:
   - Each word fades from `opacity: 0` / `filter: blur(2px)` to `1` / `blur(0)` over 0.25s.
-  - Per-word delay scales inversely with word count — short replies feel deliberate, long replies don't drag. Target total time clamps between 0.8s and 3s.
+  - Per-word delay scales inversely with word count: short replies feel deliberate, long replies don't drag. Target total time clamps between 0.8s and 3s.
   - ±60% random jitter per word so it never feels metronomic.
 - A "jump to bottom" button (dark pill with chevron) fades in when the user has scrolled away from the latest message.
 - The thinking indicator: three dots with staggered bounce (`@keyframes ask-bounce`).
@@ -104,8 +104,8 @@ After sending a message, the assistant streams a "I need more context" reply, an
 
 ### Text selection → Ask
 - Selecting text in the document body shows a floating popup (above the selection) with **Ask** and **Highlight** buttons.
-- "Ask" opens the Ask panel and seeds the composer with a quote chip — selection popup stays visible until the user manually clicks elsewhere.
-- Popup uses a **hover triangle hit area** (cursor → popup's bottom corners) — moving the cursor diagonally toward the popup won't dismiss it even if you pass over un-highlighted text or a different highlight. Triangle expires after 400ms of cursor inactivity.
+- "Ask" opens the Ask panel and seeds the composer with a quote chip: selection popup stays visible until the user manually clicks elsewhere.
+- Popup uses a **hover triangle hit area** (cursor → popup's bottom corners): moving the cursor diagonally toward the popup won't dismiss it even if you pass over un-highlighted text or a different highlight. Triangle expires after 400ms of cursor inactivity.
 - Mode swap (Highlight ↔ Remove highlight) uses `AnimatePresence mode="popLayout"` with a soft 2px blur in/out and a shared 0.08s easeOut. The popup's `layout` prop tweens its width as the button label changes.
 
 ### Highlights
@@ -122,17 +122,17 @@ A live editable mock with 6 color themes and 4 typography themes.
 
 ### Theme toolbar
 - Always-rendered when the panel opens (default state).
-- Pin button in the header toggles its visibility — when hidden, the toolbar collapses with a 0.25s easeOut height + opacity animation.
+- Pin button in the header toggles its visibility: when hidden, the toolbar collapses with a 0.25s easeOut height + opacity animation.
 - Pin button has an active state (gainsboro background) when the toolbar is shown.
 
 ### Color themes (6)
 Light, Bold Accent, Marigold, Bookshelf, Dark, Graphite. Each defined as a scoped CSS variable set in `styles/documentation-themes/colors/`.
 
 ### Typography themes (4)
-- **Modern** — Inter / IBM Plex Sans
-- **Display** — Bricolage Grotesque / Geist
-- **Editorial** — Fraunces / Source Serif 4
-- **Technical** — Space Grotesk / Geist
+- **Modern**: Inter / IBM Plex Sans
+- **Display**: Bricolage Grotesque / Geist
+- **Editorial**: Fraunces / Source Serif 4
+- **Technical**: Space Grotesk / Geist
 
 Each defines its own scale, weights, line-heights, and tracking (tighter for sans-serif, looser for serif).
 
@@ -145,7 +145,7 @@ The mock renders the proof-of-work data (`src/data/proofOfWork.js`):
 - 5 sections each with: number, eyebrow, title, body, image placeholder
 
 **Inline editing**: the author name and each section body are `contentEditable`.
-- **Hover state**: 6% `currentColor`-tinted background — theme-aware (dark on light themes, light on dark themes) via `color-mix(in srgb, currentColor 6%, transparent)`.
+- **Hover state**: 6% `currentColor`-tinted background: theme-aware (dark on light themes, light on dark themes) via `color-mix(in srgb, currentColor 6%, transparent)`.
 - **Click to edit**: cursor lands in the field; a "Click to edit" tooltip below the element (suppressed once focused).
 - **Enter** commits, **Shift+Enter** newline, **Escape** reverts.
 - **Session persistence**: a module-level `sessionStore` Map keeps edits across panel close/reopen within the same browser session.
@@ -166,9 +166,9 @@ Static long-form tutorial content. Contains:
 ### Quiz
 - Multiple choice with A/B/C/D options.
 - Clicking "Check answer" shows a circular spinner inside the button for 1–2s (random) before revealing the result.
-- Feedback container is always mounted at the same spot — only opacity + background transitions on submit.
+- Feedback container is always mounted at the same spot: only opacity + background transitions on submit.
 - Right padding springs in from 0 to 16px (300ms cubic-bezier overshoot curve) when the feedback reveals.
-- "Check answer" → "Try again" — same button, same size, label and behavior swap. "Try again" is an outline variant of the same button.
+- "Check answer" → "Try again": same button, same size, label and behavior swap. "Try again" is an outline variant of the same button.
 - Correct: green-tinted bg, check badge. Wrong: red-tinted bg, cross badge.
 
 ### Code blocks
@@ -177,7 +177,7 @@ Static long-form tutorial content. Contains:
 - Inner `<pre>` allows `user-select: text` (so users can manually copy snippets) while the header is `user-select: none`.
 
 ### Quote callouts
-- Decorative quote-mark icon, title, and body — styled distinctly from regular paragraphs.
+- Decorative quote-mark icon, title, and body: styled distinctly from regular paragraphs.
 
 ---
 
@@ -193,7 +193,7 @@ Static long-form tutorial content. Contains:
 - Tap scale 0.95–0.98 on most actionable buttons via Framer Motion `whileTap`.
 
 ### Tooltips
-- React portal to `<body>` — escapes all parent stacking contexts and clipping.
+- React portal to `<body>`: escapes all parent stacking contexts and clipping.
 - Positioned via `getBoundingClientRect()`, repositions on scroll + resize.
 - Configurable `gap` (distance from trigger) and `disabled` (suppress while still tracking hover).
 - Bubble: 11px, dark-gray background, white text, 6px radius.
@@ -255,6 +255,6 @@ src/
 
 ## Notes
 
-- **`StrictMode`** is on — components are written defensively (no animations stored in state, refs for things that must persist across double-renders).
-- **Memory**: `Editable` uses a module-level `Map` for session persistence — survives panel unmount but not page refresh.
-- **No backend** — assistant replies are LOREM-ipsum with random delays (1–2s) to simulate AI thinking.
+- **`StrictMode`** is on: components are written defensively (no animations stored in state, refs for things that must persist across double-renders).
+- **Memory**: `Editable` uses a module-level `Map` for session persistence: survives panel unmount but not page refresh.
+- **No backend**: assistant replies are LOREM-ipsum with random delays (1–2s) to simulate AI thinking.
