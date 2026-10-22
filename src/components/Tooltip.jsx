@@ -19,7 +19,10 @@ export function TooltipProvider({ children }) {
         current.current = item;
         setActive(item);
       };
-      if (current.current?.group === item.group) reveal();
+      // Only a currently visible tooltip in an explicitly marked group can
+      // hand its bubble to a sibling. Standalone controls always open afresh.
+      if (current.current && (current.current.id === item.id ||
+        (item.group && current.current.group === item.group))) reveal();
       else {
         current.current = null;
         setActive(null);
@@ -103,7 +106,7 @@ export default function Tooltip({ label, children, placement = 'bottom', gap = 6
     engaged.current = true;
     const element = triggerRef.current;
     controls.show({ id, label, placement, gap, element,
-      group: element.closest('[data-tooltip-group]') ?? element.parentElement });
+      group: element.closest('[data-tooltip-group]') });
   };
   const hide = () => {
     engaged.current = false;

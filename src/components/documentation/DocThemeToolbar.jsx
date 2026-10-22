@@ -48,6 +48,7 @@ function ColorSwatches({ value, onChange }) {
         className="doc-theme-toolbar__swatches"
         role="radiogroup"
         aria-label="Color"
+        data-tooltip-group
       >
         {COLOR_OPTIONS.map((opt) => {
           const active = opt.key === value;
@@ -82,6 +83,7 @@ function TypeSwatches({ value, onChange }) {
         className="doc-theme-toolbar__swatches"
         role="radiogroup"
         aria-label="Typography"
+        data-tooltip-group
       >
         {TYPE_OPTIONS.map((opt) => {
           const active = opt.key === value;

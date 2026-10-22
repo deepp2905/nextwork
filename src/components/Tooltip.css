@@ -24,6 +24,13 @@
   padding: 5px 8px;
   border-radius: 6px;
   transform: translate(-50%, 0);
+  animation: tooltip-fade-in 150ms ease-out;
+}
+
+/* The bubble stays mounted during a glide, so only fresh openings fade in. */
+@keyframes tooltip-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .tooltip__bubble[data-placement='top'] {
@@ -32,4 +39,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .tooltip__position { transition: none; }
+  .tooltip__bubble { animation: none; }
 }
