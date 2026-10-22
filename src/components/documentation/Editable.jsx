@@ -23,11 +23,19 @@ export default function Editable({
     if (storeKey) sessionStore.set(storeKey, next);
   };
 
-  const onFocus = () => setFocused(true);
+  const onFocus = () => {
+    const el = ref.current;
+    const { width, height } = el.getBoundingClientRect();
+    el.style.width = `${width}px`;
+    el.style.minHeight = `${height}px`;
+    setFocused(true);
+  };
 
   const onBlur = () => {
     setFocused(false);
     commit();
+    ref.current.style.removeProperty('width');
+    ref.current.style.removeProperty('min-height');
   };
 
   const onKeyDown = (e) => {
@@ -43,7 +51,8 @@ export default function Editable({
   };
 
   return (
-    <Tooltip label="Click to edit" placement="bottom" gap={10} disabled={focused}>
+    <Tooltip label="Click to edit" placement="bottom" gap={10} disabled={focused}
+      className={Tag === 'span' ? 'doc-editable-shell--inline' : 'doc-editable-shell'}>
       <Tag
         ref={ref}
         className={`doc-editable ${className}`.trim()}

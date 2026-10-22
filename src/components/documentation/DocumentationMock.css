@@ -124,7 +124,26 @@
   border: 2px solid var(--doc-border);
 }
 
+.doc-editable-shell {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+}
+
+.doc-editable-shell > .doc-editable {
+  width: 100%;
+}
+
+.doc-editable-shell--inline {
+  min-width: 0;
+}
+
 .doc-editable {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
   border-radius: 6px;
   margin: -2px -6px;
   padding: 2px 6px;

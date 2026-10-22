@@ -98,7 +98,7 @@ export function TooltipProvider({ children }) {
   );
 }
 
-export default function Tooltip({ label, children, placement = 'bottom', gap = 6, disabled = false }) {
+export default function Tooltip({ label, children, placement = 'bottom', gap = 6, disabled = false, className = '' }) {
   const controls = useContext(TooltipContext);
   const id = useId();
   const triggerRef = useRef(null);
@@ -121,7 +121,7 @@ export default function Tooltip({ label, children, placement = 'bottom', gap = 6
   useEffect(() => () => controls.hide(id, true), [controls, id]);
 
   return (
-    <span ref={triggerRef} className="tooltip" onMouseEnter={show} onMouseLeave={hide}
+    <span ref={triggerRef} className={`tooltip ${className}`.trim()} onMouseEnter={show} onMouseLeave={hide}
       onFocus={show} onBlur={hide} onPointerDown={hide}>
       {typeof children === 'function' ? children({ 'aria-describedby': id })
         : isValidElement(children) ? cloneElement(children, {

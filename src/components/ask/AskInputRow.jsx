@@ -43,6 +43,16 @@ const AskInputRow = forwardRef(function AskInputRow(
         value={draft}
         onChange={(e) => onDraftChange(e.target.value)}
         onKeyDown={handleKeyDown}
+        onFocus={(e) => {
+          const el = e.currentTarget;
+          el.style.minHeight = `${el.getBoundingClientRect().height}px`;
+        }}
+        onBlur={(e) => {
+          const el = e.currentTarget;
+          el.style.removeProperty('min-height');
+          el.style.height = 'auto';
+          el.style.height = `${el.scrollHeight}px`;
+        }}
         disabled={disabled}
       />
       <motion.button
