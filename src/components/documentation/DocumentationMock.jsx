@@ -11,7 +11,7 @@ export default function DocumentationMock() {
         <span className="doc-mock__eyebrow">{eyebrow}</span>
         <h1 className="doc-mock__title">{title}</h1>
         <div className="doc-mock__meta">
-          <Editable as="span" className="doc-mock__name" value={author} storeKey="author" />
+          <span className="doc-mock__name">{author}</span>
           <span className="doc-mock__divider" aria-hidden="true" />
           <span className="doc-mock__date">Completed {completedOn}</span>
         </div>
