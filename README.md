@@ -1,4 +1,6 @@
-# Learning workspace
+# Workbench
+
+A place to build, ask, and document.
 
 An interactive learning-platform prototype built around a tutorial-style document with two contextual side panels: **Ask** (an AI-style chat assistant) and **Documentation** (a live, themeable workspace where the user can author their own notes).
 
