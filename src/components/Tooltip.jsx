@@ -1,70 +1,127 @@
-import { useState, useId, useRef, useLayoutEffect } from 'react';
+import { cloneElement, isValidElement, createContext, useContext, useState, useId, useRef, useLayoutEffect, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import './Tooltip.css';
 
-export default function Tooltip({
-  label,
-  children,
-  placement = 'bottom',
-  gap = 6,
-  disabled = false,
-}) {
-  const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
-  const id = useId();
-  const triggerRef = useRef(null);
+const TooltipContext = createContext(null);
 
-  const show = () => setOpen(true);
-  const hide = () => setOpen(false);
+export function TooltipProvider({ children }) {
+  const [active, setActive] = useState(null);
+  const current = useRef(null);
+  const pending = useRef(null);
+  const openTimer = useRef(null);
+  const closeTimer = useRef(null);
+  const controls = useMemo(() => ({
+    show(item) {
+      clearTimeout(openTimer.current);
+      clearTimeout(closeTimer.current);
+      pending.current = item.id;
+      const reveal = () => {
+        current.current = item;
+        setActive(item);
+      };
+      if (current.current?.group === item.group) reveal();
+      else {
+        current.current = null;
+        setActive(null);
+        openTimer.current = setTimeout(reveal, 500);
+      }
+    },
+    hide(id, immediately = false) {
+      if (pending.current === id) {
+        clearTimeout(openTimer.current);
+        pending.current = null;
+      }
+      if (current.current?.id !== id) return;
+      clearTimeout(closeTimer.current);
+      const close = () => {
+        current.current = null;
+        setActive(null);
+      };
+      if (immediately) close();
+      else closeTimer.current = setTimeout(close, 120);
+    },
+  }), []);
 
-  useLayoutEffect(() => {
-    if (!open) return;
-    const el = triggerRef.current;
-    if (!el) return;
-    const updatePosition = () => {
-      const rect = el.getBoundingClientRect();
-      const left = rect.left + rect.width / 2;
-      const top = placement === 'top' ? rect.top - gap : rect.bottom + gap;
-      setPos({ top, left });
+  useEffect(() => {
+    const dismiss = (event) => {
+      if (event.key === 'Escape') {
+        clearTimeout(openTimer.current);
+        clearTimeout(closeTimer.current);
+        pending.current = null;
+        current.current = null;
+        setActive(null);
+      }
     };
-    updatePosition();
-    window.addEventListener('scroll', updatePosition, true);
-    window.addEventListener('resize', updatePosition);
+    window.addEventListener('keydown', dismiss);
     return () => {
-      window.removeEventListener('scroll', updatePosition, true);
-      window.removeEventListener('resize', updatePosition);
+      clearTimeout(openTimer.current);
+      clearTimeout(closeTimer.current);
+      window.removeEventListener('keydown', dismiss);
     };
-  }, [open, placement, gap]);
+  }, []);
 
-  const isOpen = open && !disabled;
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  useLayoutEffect(() => {
+    if (!active) return;
+    const update = () => {
+      const rect = active.element.getBoundingClientRect();
+      setPos({
+        left: rect.left + rect.width / 2,
+        top: active.placement === 'top' ? rect.top - active.gap : rect.bottom + active.gap,
+      });
+    };
+    update();
+    window.addEventListener('scroll', update, true);
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update, true);
+      window.removeEventListener('resize', update);
+    };
+  }, [active]);
 
   return (
-    <>
-      <span
-        ref={triggerRef}
-        className="tooltip"
-        onMouseEnter={show}
-        onMouseLeave={hide}
-        onFocus={show}
-        onBlur={hide}
-      >
-        {typeof children === 'function'
-          ? children({ 'aria-describedby': id })
-          : children}
-      </span>
-      {createPortal(
-        <span
-          role="tooltip"
-          id={id}
-          className="tooltip__bubble"
-          data-placement={placement}
-          data-open={isOpen ? 'true' : 'false'}
-          style={{ top: pos.top, left: pos.left }}
-        >
-          {label}
-        </span>,
-        document.body,
+    <TooltipContext.Provider value={controls}>
+      {children}
+      {active && createPortal(
+        <span className="tooltip__position" style={{ transform: `translate(${pos.left}px, ${pos.top}px)` }}>
+          <span role="tooltip" id={active.id} className="tooltip__bubble" data-placement={active.placement}>
+            {active.label}
+          </span>
+        </span>, document.body,
       )}
-    </>
+    </TooltipContext.Provider>
+  );
+}
+
+export default function Tooltip({ label, children, placement = 'bottom', gap = 6, disabled = false }) {
+  const controls = useContext(TooltipContext);
+  const id = useId();
+  const triggerRef = useRef(null);
+  const engaged = useRef(false);
+  const show = () => {
+    if (disabled) return;
+    engaged.current = true;
+    const element = triggerRef.current;
+    controls.show({ id, label, placement, gap, element,
+      group: element.closest('[data-tooltip-group]') ?? element.parentElement });
+  };
+  const hide = () => {
+    engaged.current = false;
+    controls.hide(id);
+  };
+  useEffect(() => {
+    if (disabled) { engaged.current = false; controls.hide(id, true); }
+    else if (engaged.current) show();
+  }, [disabled, label, placement, gap]);
+  useEffect(() => () => controls.hide(id, true), [controls, id]);
+
+  return (
+    <span ref={triggerRef} className="tooltip" onMouseEnter={show} onMouseLeave={hide}
+      onFocus={show} onBlur={hide} onPointerDown={hide}>
+      {typeof children === 'function' ? children({ 'aria-describedby': id })
+        : isValidElement(children) ? cloneElement(children, {
+          'aria-describedby': [children.props['aria-describedby'], id].filter(Boolean).join(' '),
+        }) : children}
+    </span>
   );
 }

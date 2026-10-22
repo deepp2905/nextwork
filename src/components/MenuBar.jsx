@@ -13,7 +13,7 @@ const TABS = [
   { id: 'documentation', label: 'Documentation', Icon: BookOpen, shortcut: `${modKey} + ›` },
 ];
 
-function MenuTab({ id, label, Icon, isActive, onSelect }) {
+function MenuTab({ id, label, Icon, isActive, onSelect, 'aria-describedby': describedBy }) {
   const [pressed, setPressed] = useState(false);
 
   const press = () => setPressed(true);
@@ -29,6 +29,7 @@ function MenuTab({ id, label, Icon, isActive, onSelect }) {
       onPointerLeave={release}
       onPointerCancel={release}
       aria-pressed={isActive}
+      aria-describedby={describedBy}
     >
       <motion.span
         className="menu-bar__tab-inner"
@@ -44,7 +45,7 @@ function MenuTab({ id, label, Icon, isActive, onSelect }) {
 
 export default function MenuBar({ activeTab, onSelect }) {
   return (
-    <nav className="menu-bar" aria-label="Primary">
+    <nav className="menu-bar" aria-label="Primary" data-tooltip-group>
       <ul className="menu-bar__list">
         {TABS.map(({ id, label, Icon, shortcut }) => {
           const isActive = activeTab === id;

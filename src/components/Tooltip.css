@@ -3,10 +3,17 @@
   display: inline-flex;
 }
 
-.tooltip__bubble {
+.tooltip__position {
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 1000;
   pointer-events: none;
+  transition: transform 150ms ease-in-out;
+}
+
+.tooltip__bubble {
+  display: block;
   white-space: nowrap;
   font-family: var(--font-sans);
   font-size: 11px;
@@ -16,10 +23,6 @@
   background: var(--color-dark-gray);
   padding: 5px 8px;
   border-radius: 6px;
-  opacity: 0;
-}
-
-.tooltip__bubble[data-placement='bottom'] {
   transform: translate(-50%, 0);
 }
 
@@ -27,6 +30,6 @@
   transform: translate(-50%, -100%);
 }
 
-.tooltip__bubble[data-open='true'] {
-  opacity: 1;
+@media (prefers-reduced-motion: reduce) {
+  .tooltip__position { transition: none; }
 }
