@@ -15,9 +15,11 @@ export function TooltipProvider({ children }) {
       clearTimeout(openTimer.current);
       clearTimeout(closeTimer.current);
       pending.current = item.id;
+      const glide = Boolean(current.current && item.group &&
+        current.current.group === item.group && current.current.id !== item.id);
       const reveal = () => {
         current.current = item;
-        setActive(item);
+        setActive({ ...item, glide });
       };
       // Only a currently visible tooltip in an explicitly marked group can
       // hand its bubble to a sibling. Standalone controls always open afresh.
@@ -86,7 +88,7 @@ export function TooltipProvider({ children }) {
     <TooltipContext.Provider value={controls}>
       {children}
       {active && createPortal(
-        <span className="tooltip__position" style={{ transform: `translate(${pos.left}px, ${pos.top}px)` }}>
+        <span className="tooltip__position" data-glide={active.glide ? 'true' : 'false'} style={{ transform: `translate(${pos.left}px, ${pos.top}px)` }}>
           <span role="tooltip" id={active.id} className="tooltip__bubble" data-placement={active.placement}>
             {active.label}
           </span>

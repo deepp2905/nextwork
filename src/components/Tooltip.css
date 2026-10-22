@@ -9,6 +9,9 @@
   left: 0;
   z-index: 1000;
   pointer-events: none;
+}
+
+.tooltip__position[data-glide='true'] {
   transition: transform 150ms ease-in-out;
 }
 
@@ -38,6 +41,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tooltip__position { transition: none; }
+  .tooltip__position[data-glide='true'] { transition: none; }
   .tooltip__bubble { animation: none; }
 }
