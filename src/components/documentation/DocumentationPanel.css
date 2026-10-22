@@ -62,3 +62,8 @@
   top: 65px;
   z-index: 2;
 }
+
+/* Descendant scroll surfaces inherit the selected documentation palette. */
+.doc-panel__themed {
+  --scrollbar-thumb: var(--doc-muted);
+}
